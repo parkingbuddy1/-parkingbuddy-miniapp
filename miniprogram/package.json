@@ -1,0 +1,9 @@
+{
+  "name": "yutinghui-miniapp",
+  "version": "2.0.0",
+  "description": "粤停汇 - 停车比价AI助手",
+  "main": "app.js",
+  "dependencies": {
+    "tdesign-miniprogram": "^1.8.0"
+  }
+}

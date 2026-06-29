@@ -1,0 +1,6 @@
+/* 收藏夹 v1 - 蓝字橙字白底风格 */
+.page{background:var(--bg-deep);min-height:100vh;padding:16rpx 20rpx}
+.empty-wrap{padding-top:160rpx}.empty-icon{font-size:64rpx;opacity:.5;margin-bottom:16rpx}
+.empty-title{font-size:28rpx;color:var(--text-secondary);margin-bottom:8rpx}
+.empty-desc{font-size:22rpx;color:var(--text-muted);margin-bottom:32rpx}
+.empty-btn{background:linear-gradient(135deg,#1A56DB,#4F8AF7);color:#fff;padding:16rpx 48rpx;border-radius:40rpx;font-size:24rpx}

@@ -1,0 +1,149 @@
+<view class="home-page" style="padding-top: {{statusBarHeight + 44}}px;">
+  <!-- 顶部导航 -->
+  <view class="topbar">
+    <view class="topbar-left">
+      <view class="welcome">您好，{{property.contactName}}</view>
+      <view class="company">{{property.name}}</view>
+    </view>
+    <view class="topbar-right" bindtap="logout">
+      <text class="logout-icon">⏻</text>
+    </view>
+  </view>
+
+  <!-- 车场选择 -->
+  <view class="lot-tabs" wx:if="{{lots.length > 1}}">
+    <scroll-view scroll-x class="lot-scroll" enhanced show-scrollbar="{{false}}">
+      <view class="lot-tab {{selectedLotIndex === index ? 'active' : ''}}"
+            wx:for="{{lots}}" wx:key="_id"
+            data-index="{{index}}" bindtap="selectLot">
+        {{item.name}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <view class="spinner"></view>
+    <text>加载中...</text>
+  </view>
+
+  <!-- 看板内容 -->
+  <block wx:elif="{{dashboard}}">
+    <!-- 车场信息卡 -->
+    <view class="lot-card">
+      <view class="lot-name">{{dashboard.parkingInfo.name}}</view>
+      <view class="lot-address">{{dashboard.parkingInfo.address}}</view>
+      <view class="lot-stats">
+        <view class="stat-item">
+          <view class="stat-num">{{dashboard.spaces.total}}</view>
+          <view class="stat-label">总车位数</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-num highlight">{{dashboard.spaces.inUse}}</view>
+          <view class="stat-label">实时在场</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-num">{{dashboard.spaces.utilization}}%</view>
+          <view class="stat-label">利用率</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 共享开关（PPT 核心功能） -->
+    <view class="switch-card">
+      <view class="switch-info">
+        <view class="switch-title">共享停车开关</view>
+        <view class="switch-desc">{{dashboard.sharedEnabled ? '当前对外开放' : '当前为封闭状态'}}</view>
+      </view>
+      <switch checked="{{dashboard.sharedEnabled}}"
+              color="#F97316" bindchange="toggleShared" />
+    </view>
+
+    <!-- 数据卡片 -->
+    <view class="grid-card">
+      <view class="grid-item" data-url="/pages-property/revenue/revenue" bindtap="goPage">
+        <view class="grid-icon" style="background: linear-gradient(135deg, #F97316, #FB923C);">¥</view>
+        <view class="grid-num">¥{{dashboard.month.revenue / 100}}</view>
+        <view class="grid-label">本月营收</view>
+      </view>
+      <view class="grid-item" data-url="/pages-property/order-list/order-list" bindtap="goPage">
+        <view class="grid-icon" style="background: linear-gradient(135deg, #1A56DB, #3B82F6);">📋</view>
+        <view class="grid-num">{{dashboard.month.orders}}</view>
+        <view class="grid-label">本月订单</view>
+      </view>
+      <view class="grid-item" data-url="/pages-property/space/space" bindtap="goPage">
+        <view class="grid-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">P</view>
+        <view class="grid-num">{{dashboard.spaces.available}}</view>
+        <view class="grid-label">可预约车位</view>
+      </view>
+      <view class="grid-item" data-url="/pages-property/today/today" bindtap="goPage">
+        <view class="grid-icon" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">📅</view>
+        <view class="grid-num">{{dashboard.today.orders}}</view>
+        <view class="grid-label">今日订单</view>
+      </view>
+    </view>
+
+    <!-- 待办任务 -->
+    <view class="task-card">
+      <view class="task-title">⚠️ 待办任务</view>
+      <view class="task-item" data-url="/pages-property/user-review/user-review" bindtap="goPage">
+        <view class="task-left">
+          <view class="task-name">车主实名审核</view>
+          <view class="task-desc">待审核车主资料</view>
+        </view>
+        <view class="task-badge {{dashboard.pendingTasks.userReview > 0 ? 'urgent' : ''}}">
+          {{dashboard.pendingTasks.userReview}}
+        </view>
+        <view class="task-arrow">›</view>
+      </view>
+      <view class="task-item" data-url="/pages-property/retained/retained" bindtap="goPage">
+        <view class="task-left">
+          <view class="task-name">滞留车辆处置</view>
+          <view class="task-desc">超时/滞留车辆处理</view>
+        </view>
+        <view class="task-badge {{dashboard.pendingTasks.retainedVehicles > 0 ? 'urgent' : ''}}">
+          {{dashboard.pendingTasks.retainedVehicles}}
+        </view>
+        <view class="task-arrow">›</view>
+      </view>
+    </view>
+
+    <!-- 快捷入口 -->
+    <view class="quick-card">
+      <view class="task-title">🔧 快捷管理</view>
+      <view class="quick-grid">
+        <view class="quick-item" data-url="/pages-property/config/config" bindtap="goPage">
+          <view class="quick-icon">⚙️</view>
+          <view class="quick-label">车场配置</view>
+        </view>
+        <view class="quick-item" data-url="/pages-property/pricing/pricing" bindtap="goPage">
+          <view class="quick-icon">💰</view>
+          <view class="quick-label">定价管理</view>
+        </view>
+        <view class="quick-item" data-url="/pages-property/blacklist/blacklist" bindtap="goPage">
+          <view class="quick-icon">🚫</view>
+          <view class="quick-label">黑名单</view>
+        </view>
+        <view class="quick-item" data-url="/pages-property/visitor/visitor" bindtap="goPage">
+          <view class="quick-icon">👥</view>
+          <view class="quick-label">访客报备</view>
+        </view>
+        <view class="quick-item" data-url="/pages-property/security/scan" bindtap="goPage">
+          <view class="quick-icon">📷</view>
+          <view class="quick-label">保安扫码</view>
+        </view>
+        <view class="quick-item" data-url="/pages-property/settlement/settlement" bindtap="goPage">
+          <view class="quick-icon">📊</view>
+          <view class="quick-label">分润账单</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 无车场提示 -->
+  <view class="empty" wx:elif="{{!loading}}">
+    <view class="empty-icon">🏢</view>
+    <view class="empty-text">暂未分配车场</view>
+    <view class="empty-desc">请联系平台开通车场权限</view>
+  </view>
+</view>

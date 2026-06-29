@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-dialog": "tdesign-miniprogram/dialog/dialog",
+    "coupon-card": "/components/coupon-card/coupon-card"
+  },
+  "navigationBarTitleText": "确认订单",
+  "navigationBarBackgroundColor": "#1A1A2E",
+  "navigationBarTextStyle": "white"
+}

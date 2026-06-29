@@ -1,0 +1,61 @@
+/* 项目推荐及合作 */
+.page{background:var(--bg-deep);min-height:100vh;padding-bottom:60rpx}
+
+/* ====== 公司简介卡片 ====== */
+.intro-card{
+  margin:24rpx;padding:40rpx 32rpx 36rpx;
+  background:#0F172A;border-radius:24rpx;
+}
+.intro-header{display:flex;align-items:baseline;gap:8rpx;margin-bottom:24rpx}
+.intro-logo{font-size:44rpx;font-weight:800;color:#fff}
+.intro-logo-sub{font-size:22rpx;color:rgba(255,255,255,.5);font-weight:600}
+.intro-company{
+  display:block;font-size:26rpx;font-weight:600;color:rgba(255,255,255,.85);
+  margin-bottom:20rpx
+}
+.intro-body{font-size:24rpx;color:rgba(255,255,255,.65);line-height:1.8}
+.intro-highlight{color:#FDA955;font-weight:700;background:rgba(249,115,22,.15);padding:2rpx 8rpx;border-radius:4rpx}
+
+/* ====== 留言表单卡片 ====== */
+.form-card{
+  margin:0 24rpx 24rpx;padding:32rpx 28rpx;
+  background:var(--bg-card);border-radius:24rpx;
+}
+.form-title{display:block;font-size:30rpx;font-weight:700;color:var(--text-primary);margin-bottom:8rpx}
+.form-sub{display:block;font-size:22rpx;color:var(--text-secondary);margin-bottom:28rpx;line-height:1.5}
+
+.field{margin-bottom:24rpx}
+.field-label{display:block;font-size:26rpx;font-weight:600;color:var(--text-primary);margin-bottom:10rpx}
+.required{color:#EF4444;margin-right:4rpx}
+.field-input{
+  width:100%;height:88rpx;padding:0 24rpx;
+  background:var(--bg-deep);border-radius:12rpx;
+  font-size:26rpx;color:var(--text-primary);
+  box-sizing:border-box;border:2rpx solid transparent;
+  transition:border-color .2s;
+}
+.field-input:focus{border-color:var(--primary)}
+.field-textarea{
+  width:100%;min-height:180rpx;padding:20rpx 24rpx;
+  background:var(--bg-deep);border-radius:12rpx;
+  font-size:26rpx;color:var(--text-primary);line-height:1.6;
+  box-sizing:border-box;border:2rpx solid transparent;
+  transition:border-color .2s;
+}
+.field-textarea:focus{border-color:var(--primary)}
+
+.privacy-notice{
+  text-align:center;font-size:22rpx;color:var(--text-muted);
+  padding:16rpx;margin-bottom:24rpx;
+  background:#F8FAFC;border-radius:12rpx;
+}
+
+.submit-btn{
+  width:100%;height:88rpx;line-height:88rpx;
+  background:var(--primary);color:#fff;
+  font-size:28rpx;font-weight:600;border-radius:44rpx;
+  border:none;padding:0;
+}
+.submit-btn[disabled]{opacity:.5}
+
+.bottom-area{height:40rpx}

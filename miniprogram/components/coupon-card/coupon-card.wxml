@@ -1,0 +1,20 @@
+<!-- 优惠券卡片 - 蓝底橙字风格 -->
+<view class="c-card {{coupon.status==='expired'?'expired':''}} {{coupon.status==='used'?'used':''}} {{mode==='select'?'selectable':''}}" bindtap="onTap">
+  <view class="c-left">
+    <text class="c-amount">¥<text class="c-num">{{coupon.amount||coupon.discount||0}}</text></text>
+    <text class="c-term">{{coupon.condition||(coupon.type==='reg'?'金额200元以上的月卡订单可用':'无门槛使用')}}</text>
+    <text class="c-id">券号: {{coupon.id}}</text>
+  </view>
+  <view class="c-divider"></view>
+  <view class="c-right">
+    <text class="c-title">{{coupon.title||coupon.name||'优惠券'}}</text>
+    <text class="c-desc">{{coupon.desc||coupon.description||''}}</text>
+    <view class="c-expire">
+      <text class="c-exp-label">有效期至</text>
+      <text class="c-exp-date">{{coupon.expireDate||''}}</text>
+    </view>
+    <view class="c-use-btn" wx:if="{{coupon.status==='valid'}}">去使用 →</view>
+  </view>
+  <view class="c-badge" wx:if="{{coupon.status==='expired'}}">已过期</view>
+  <view class="c-badge used" wx:elif="{{coupon.status==='used'}}">已使用</view>
+</view>

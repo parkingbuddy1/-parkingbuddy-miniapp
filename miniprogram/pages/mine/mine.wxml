@@ -1,0 +1,82 @@
+<!-- 个人中心 -->
+<view class="page">
+  <!-- 用户信息 -->
+  <view class="user-header">
+    <!-- 未登录：手机号一键登录（实名认证） -->
+    <view class="login-area" wx:if="{{!isLogin}}">
+      <view class="avatar avatar-placeholder">👤</view>
+      <text class="login-hint">微信手机号一键登录，即完成实名认证</text>
+      <button class="phone-login-btn" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">
+        <text class="phone-login-icon">📱</text>
+        <text>手机号一键登录</text>
+      </button>
+      <text class="login-sub">首次登录即完成实名认证</text>
+    </view>
+
+    <!-- 已登录 -->
+    <view class="user-info flex" wx:else>
+      <view class="avatar avatar-placeholder" wx:if="{{!userInfo.avatarUrl}}">👤</view>
+      <image wx:else class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+      <view class="user-detail flex-1">
+        <text class="user-name">{{userInfo.nickName || '车主用户'}}</text>
+        <text class="user-id" wx:if="{{userInfo.userId}}">ID: {{userInfo.userId}}</text>
+        <view class="user-tags">
+          <text class="realname-tag" wx:if="{{userInfo.phone}}">✓ 已实名</text>
+          <text class="realname-tag" wx:if="{{userInfo.phone}}">📱 {{userInfo.phone}}</text>
+        </view>
+      </view>
+      <view class="refresh-avatar-btn" bindtap="onRefreshProfile">🔄</view>
+    </view>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats-row flex">
+    <view class="stat-item" bindtap="onTapOrders">
+      <text class="stat-value">{{stats.orderCount || 0}}</text>
+      <text class="stat-label">我的订单</text>
+    </view>
+    <view class="stat-item" bindtap="onTapCoupons">
+      <text class="stat-value">{{stats.couponCount || 0}}</text>
+      <text class="stat-label">优惠券</text>
+    </view>
+    <view class="stat-item" bindtap="onTapFavorites">
+      <text class="stat-value">{{stats.favoriteCount || 0}}</text>
+      <text class="stat-label">收藏</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value">0</text>
+      <text class="stat-label">拼团</text>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <t-cell-group title="常用功能">
+    <t-cell title="车主认证" leftIcon="secured" arrow bind:click="onTapVerify">
+      <text wx:if="{{verifyStatus==='已认证'}}" slot="note" style="color:#059669;font-size:26rpx">已认证</text>
+      <text wx:else slot="note" style="color:#9CA3AF;font-size:26rpx">未认证</text>
+    </t-cell>
+    <t-cell title="我的车辆" leftIcon="user" arrow bind:click="onTapProfile" note="{{profileStatus}}" />
+    <t-cell title="我的订单" leftIcon="order" arrow bind:click="onTapOrders" />
+    <t-cell title="我的优惠券" leftIcon="coupon" arrow bind:click="onTapCoupons" />
+    <t-cell title="我的收藏" leftIcon="heart" arrow bind:click="onTapFavorites" />
+  </t-cell-group>
+
+  <t-cell-group title="设置">
+    <t-cell title="个人信息" leftIcon="user" arrow bind:click="onTapProfile" note="{{profileStatus}}" />
+    <t-cell title="发票管理" leftIcon="file" arrow bind:click="onTapInvoice" />
+  </t-cell-group>
+
+  <t-cell-group title="管理" wx:if="{{isLogin&&isAdmin}}">
+    <t-cell title="认证审核" leftIcon="secured" arrow bind:click="onTapAdmin" />
+    <t-cell title="用户反馈" leftIcon="chat" arrow bind:click="onTapFeedbackAdmin" />
+    <t-cell title="反馈保存箱" leftIcon="folder" arrow bind:click="onTapFeedbackArchive" />
+    <t-cell title="商务合作" leftIcon="usergroup" arrow bind:click="onTapCooperationAdmin" />
+  </t-cell-group>
+
+  <!-- 退出登录 -->
+  <view class="logout-btn" wx:if="{{isLogin}}" bindtap="onLogout">
+    <t-button theme="default" variant="outline" size="large" block>退出登录</t-button>
+  </view>
+
+  <view class="safe-area-bottom page-bottom-placeholder"></view>
+</view>

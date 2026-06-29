@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "t-loading": "tdesign-miniprogram/loading/loading",
+    "t-empty": "tdesign-miniprogram/empty/empty"
+  },
+  "navigationBarTitleText": "消息中心",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#F8FAFC"
+}

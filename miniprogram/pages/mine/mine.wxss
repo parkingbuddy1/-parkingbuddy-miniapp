@@ -1,0 +1,77 @@
+/* 我的 v3 - 蓝字橙字白底风格 */
+.page { min-height: 100vh; background: var(--bg-deep); }
+
+.user-header {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  padding: 40rpx 32rpx;
+  display: flex; align-items: center;
+}
+
+/* ====== 登录区 ====== */
+.login-area {
+  width: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 20rpx;
+}
+.login-hint {
+  font-size: 26rpx; color: var(--text-secondary);
+  text-align: center; line-height: 1.6;
+}
+.phone-login-btn {
+  width: 80%;
+  background: linear-gradient(135deg, #1A56DB, #4F8AF7);
+  color: #fff; font-size: 30rpx; font-weight: 700;
+  padding: 24rpx; border-radius: 48rpx;
+  display: flex; align-items: center; justify-content: center;
+  gap: 12rpx; border: none; box-shadow: 0 8rpx 24rpx rgba(26,86,219,0.25);
+}
+.phone-login-btn::after { border: none; }
+.phone-login-icon { font-size: 32rpx; }
+.login-sub {
+  font-size: 22rpx; color: var(--primary);
+}
+
+/* 实名标签 */
+.user-tags {
+  margin-top: 6rpx; display: flex; gap: 10rpx; flex-wrap: wrap;
+}
+.realname-tag {
+  font-size: 20rpx; color: var(--accent);
+  background: rgba(249,115,22,0.1); padding: 3rpx 12rpx;
+  border-radius: 6rpx; border: 1rpx solid rgba(249,115,22,0.2);
+}
+
+.user-avatar-btn {
+  display: flex; align-items: center; background: none;
+  border: none; padding: 0; margin: 0; line-height: 1;
+}
+.user-avatar-btn::after { border: none; }
+
+.avatar {
+  width: 100rpx; height: 100rpx; border-radius: 50%;
+  border: 3rpx solid rgba(26,86,219,0.3); margin-right: 24rpx;
+}
+.avatar-placeholder {
+  display: flex; align-items: center; justify-content: center;
+  background: #E2E8F0; font-size: 48rpx;
+}
+
+.login-text { color: var(--primary); font-size: 30rpx; }
+
+.user-info { align-items: center; }
+.user-detail { margin-left: 24rpx; }
+.user-name { color: var(--primary); font-size: 32rpx; font-weight: 600; display: block; margin-bottom: 4rpx; }
+.user-id { color: var(--text-muted); font-size: 22rpx; display: block; margin-bottom: 6rpx; }
+.refresh-avatar-btn{font-size:28rpx;padding:8rpx;color:var(--text-muted)}
+.user-phone { color: var(--text-secondary); font-size: 24rpx; }
+
+.stats-row {
+  background: var(--bg-card); margin: 12rpx 24rpx;
+  border-radius: var(--radius-md); padding: 24rpx;
+  box-shadow: var(--shadow-sm);
+}
+.stat-item { flex: 1; text-align: center; display: flex; flex-direction: column; }
+.stat-value { font-size: 36rpx; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 22rpx; color: var(--text-muted); margin-top: 4rpx; }
+
+.logout-btn { padding: 40rpx 32rpx; }

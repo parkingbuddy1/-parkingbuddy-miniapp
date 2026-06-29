@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "物业工作台",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "usingComponents": {}
+}

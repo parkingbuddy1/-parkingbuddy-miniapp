@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "t-loading": "tdesign-miniprogram/loading/loading"
+  },
+  "navigationBarTitleText": "商务合作",
+  "backgroundColor": "#F8FAFC"
+}

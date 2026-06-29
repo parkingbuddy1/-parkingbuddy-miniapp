@@ -1,0 +1,79 @@
+<view class="page">
+  <view class="topbar">
+    <view class="back-btn" bindtap="goBack">← 返回</view>
+    <text class="topbar-title">认证审核</text>
+    <text class="topbar-count">{{list.length}} 条</text>
+  </view>
+
+  <!-- 筛选 -->
+  <view class="filter-row">
+    <view class="f-item {{filter==='all'?'on':''}}" bindtap="onFilter" data-filter="all">待审核</view>
+    <view class="f-item {{filter==='verified'?'on':''}}" bindtap="onFilter" data-filter="verified">已通过</view>
+    <view class="f-item {{filter==='rejected'?'on':''}}" bindtap="onFilter" data-filter="rejected">已驳回</view>
+  </view>
+
+  <!-- 列表 -->
+  <block wx:if="{{!loading}}">
+    <view class="empty" wx:if="{{list.length===0}}">暂无审核记录</view>
+
+    <view class="card" wx:for="{{list}}" wx:key="_id">
+      <view class="card-hd" bindtap="onToggle" data-id="{{item._id}}">
+        <view class="card-hd-left">
+          <text class="card-name">{{item.name||'未知'}}</text>
+          <text class="card-plate">{{item.plateNo||'无车牌'}}</text>
+        </view>
+        <view class="card-hd-right">
+          <text class="status-tag tag-{{item.status}}">
+            {{item.status==='pending_review'?'待审核':item.status==='pending_manual'?'待复核':item.status==='verified'?'已通过':'已驳回'}}
+          </text>
+          <text class="expand-arrow">{{expandedId===item._id?'▼':'▶'}}</text>
+        </view>
+      </view>
+
+      <!-- 展开详情 -->
+      <view class="card-body" wx:if="{{expandedId===item._id}}">
+        <view class="info-row"><text class="info-key">姓名</text><text class="info-val">{{item.name}}</text></view>
+        <view class="info-row"><text class="info-key">手机号</text><text class="info-val">{{item.phone||'未填写'}}</text></view>
+        <view class="info-row"><text class="info-key">身份证</text><text class="info-val">{{item.idNo}}</text></view>
+        <view class="info-row"><text class="info-key">车牌号</text><text class="info-val">{{item.plateNo}}</text></view>
+
+        <!-- 行驶证原图 -->
+        <view class="license-section" wx:if="{{item.licenseFileID}}">
+          <text class="sec-title">行驶证原图</text>
+          <image class="license-img" src="{{item.licenseFileID}}" mode="widthFix" bindtap="onPreviewImage" data-id="{{item.licenseFileID}}"/>
+        </view>
+
+        <view class="ocr-section" wx:if="{{item.ocrData&&item.ocrData.plateNo}}">
+          <text class="sec-title">OCR 识别结果</text>
+          <view class="info-row"><text class="info-key">车牌号码</text><text class="info-val">{{item.ocrData.plateNo||'-'}}</text></view>
+          <view class="info-row"><text class="info-key">所有人</text><text class="info-val">{{item.ocrData.owner||'-'}}</text></view>
+          <view class="info-row"><text class="info-key">住址</text><text class="info-val">{{item.ocrData.address||'-'}}</text></view>
+          <view class="info-row"><text class="info-key">车辆类型</text><text class="info-val">{{item.ocrData.vehicleType||'-'}}</text></view>
+          <view class="info-row"><text class="info-key">品牌型号</text><text class="info-val">{{item.ocrData.brandModel||'-'}}</text></view>
+          <view class="info-row"><text class="info-key">VIN</text><text class="info-val">{{item.ocrData.vin||'-'}}</text></view>
+          <view class="info-row"><text class="info-key">发动机号</text><text class="info-val">{{item.ocrData.engineNo||'-'}}</text></view>
+          <view class="info-row"><text class="info-key">注册日期</text><text class="info-val">{{item.ocrData.registerDate||'-'}}</text></view>
+          <view class="info-row"><text class="info-key">发证日期</text><text class="info-val">{{item.ocrData.issueDate||'-'}}</text></view>
+        </view>
+
+        <view class="check-section">
+          <text class="sec-title">系统校验</text>
+          <view class="check-item {{item.checkResult.nameMatch?'pass':'warn'}}">
+            {{item.checkResult.nameMatch?'✅':'⚠️'}} 姓名一致性：{{item.checkResult.nameMatch?'通过':'待确认'}}
+          </view>
+          <view class="check-item {{item.checkResult.ocrSuccess?'pass':'warn'}}">
+            {{item.checkResult.ocrSuccess?'✅':'⚠️'}} OCR识别：{{item.checkResult.ocrSuccess?'成功':'失败'}}
+          </view>
+        </view>
+
+        <!-- 操作按钮（仅待审核状态） -->
+        <view class="actions" wx:if="{{item.status==='pending_review'||item.status==='pending_manual'}}">
+          <button class="btn-approve" bindtap="onApprove" data-id="{{item._id}}">✅ 通过</button>
+          <button class="btn-reject" bindtap="onReject" data-id="{{item._id}}">❌ 驳回</button>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="loading-msg" wx:if="{{loading}}">加载中...</view>
+</view>

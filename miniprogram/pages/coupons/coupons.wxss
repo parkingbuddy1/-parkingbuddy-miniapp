@@ -1,0 +1,22 @@
+/* 优惠券页 v3 - 蓝字橙字白底风格 */
+.page{background:var(--bg-deep);min-height:100vh}
+
+.invite-banner{position:relative;margin:24rpx;padding:28rpx;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-radius:var(--radius-lg);overflow:hidden;border:1rpx solid rgba(26,86,219,0.2)}
+.invite-bg{position:absolute;top:-40rpx;right:-30rpx;width:160rpx;height:160rpx;background:radial-gradient(circle,rgba(249,115,22,.15),transparent 70%)}
+.invite-content{position:relative;z-index:1}
+.invite-title{display:block;font-size:28rpx;font-weight:700;color:var(--primary);margin-bottom:8rpx}
+.invite-desc{display:block;font-size:20rpx;color:var(--text-secondary);margin-bottom:16rpx;line-height:1.5}
+.invite-btn{background:linear-gradient(135deg,#F97316,#FB923C);color:#fff;padding:12rpx 28rpx;border-radius:40rpx;font-size:22rpx;font-weight:600;flex-shrink:0}
+
+.stats-row{padding:0 24rpx 16rpx;gap:24rpx}
+.stat-item{flex:1;background:var(--bg-card);border-radius:16rpx;padding:20rpx;text-align:center;border:1rpx solid var(--border-subtle);display:flex;flex-direction:column;box-shadow:var(--shadow-sm)}
+.stat-val{font-size:36rpx;font-weight:800;color:var(--accent)}
+.stat-lbl{font-size:20rpx;color:var(--text-secondary);margin-top:4rpx}
+
+.tabs-wrap{background:var(--bg-card);position:sticky;top:0;z-index:9}
+
+.empty-coupons{padding:80rpx 0}
+.empty-emoji{font-size:64rpx;margin-bottom:16rpx;opacity:.5}
+.empty-t{font-size:28rpx;color:var(--text-secondary);margin-bottom:8rpx}
+.empty-sub{font-size:22rpx;color:var(--text-muted);margin-bottom:32rpx}
+.empty-btn{background:linear-gradient(135deg,#1A56DB,#4F8AF7);color:#fff;padding:16rpx 48rpx;border-radius:40rpx;font-size:26rpx;font-weight:600}

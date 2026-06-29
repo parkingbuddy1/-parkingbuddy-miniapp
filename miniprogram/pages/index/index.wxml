@@ -1,0 +1,352 @@
+<!-- 首页 v11 - WorkBuddy风格 + 多选筛选 -->
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="page">
+  <!-- ========================================== -->
+  <!-- ====== Landing 首页 ====== -->
+  <!-- ========================================== -->
+  <view class="landing" wx:if="{{currentView==='landing'}}">
+    <!-- 顶部栏: 汉堡菜单靠左 + 实时定位 -->
+    <view class="l-top" style="padding-top:{{statusBarHeight+65}}rpx">
+      <view class="l-menu" bindtap="onToggleMenu">
+        <view class="l-menu-line"></view><view class="l-menu-line"></view><view class="l-menu-line"></view>
+      </view>
+      <view class="l-loc" wx:if="{{locCity}}" bindtap="onToggleLandingCity">
+        <text class="l-loc-icon">📍</text>
+        <text class="l-loc-text">{{locDisplay||(selCity||locCity)}}</text>
+        <text class="l-loc-arrow">▼</text>
+      </view>
+      <view class="l-loc l-loc-loading" wx:else>
+        <text class="l-loc-icon">📍</text>
+        <text class="l-loc-text">定位中...</text>
+      </view>
+
+      <!-- Landing城市下拉 -->
+      <view class="landing-city-drop" wx:if="{{showLandingCityDrop}}" catchtap="onCloseLandingCity">
+        <view class="landing-city-mask"></view>
+        <view class="landing-city-menu">
+          <view class="landing-city-item near-me {{!isManualCity&&locCity?'on':''}}" bindtap="onPickMyLocation">📍 我的位置</view>
+          <view class="landing-city-item {{selCity==='深圳'?'on':''}}" bindtap="onPickLandingCity" data-city="深圳">📍 深圳</view>
+          <view class="landing-city-item {{selCity==='广州'?'on':''}}" bindtap="onPickLandingCity" data-city="广州">📍 广州</view>
+          <view class="landing-city-item {{selCity==='佛山'?'on':''}}" bindtap="onPickLandingCity" data-city="佛山">📍 佛山</view>
+          <view class="landing-city-item {{selCity==='珠海'?'on':''}}" bindtap="onPickLandingCity" data-city="珠海">📍 珠海</view>
+          <view class="landing-city-close" bindtap="onCloseLandingCity">取消</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 优惠滚动条 (2秒切换，浅蓝背景) -->
+    <view class="l-banner-wide" bindtap="onTapBanner">
+      <swiper current="{{currentBanner}}" autoplay="{{true}}" interval="2000" circular vertical style="height:56rpx" bindchange="onBannerChange">
+        <swiper-item wx:for="{{banners}}" wx:key="type">
+          <view class="l-banner-item">
+            <text class="l-banner-title">{{item.title}}</text>
+            <text class="l-banner-desc">{{item.desc}}</text>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <!-- LOGO 居中于优惠滚动和停车列表之间 -->
+    <view class="l-logo-area">
+      <image class="l-logo" src="/static/logo.png" mode="aspectFit"></image>
+    </view>
+
+    <!-- 两个主按钮 -->
+    <view class="l-main-btns">
+      <view class="l-main-btn" bindtap="onOpenParking">
+        <text class="l-main-emoji">📋</text>
+        <text class="l-main-text">车场列表</text>
+      </view>
+      <view class="l-main-btn" bindtap="onOpenMap">
+        <text class="l-main-emoji">🗺️</text>
+        <text class="l-main-text">车场地图</text>
+      </view>
+    </view>
+
+    <!-- AI快捷入口 -->
+    <view class="l-ai-row">
+      <view class="l-ai-item {{aiActive==='monthly'?'active':''}}" bindtap="onAiTap" data-type="monthly">
+        <text class="l-ai-icon">📊</text>
+        <text class="l-ai-label">月卡比价</text>
+      </view>
+      <view class="l-ai-item {{aiActive==='temp'?'active':''}}" bindtap="onAiTap" data-type="temp">
+        <text class="l-ai-icon">⏱️</text>
+        <text class="l-ai-label">临停比价</text>
+      </view>
+      <view class="l-ai-item {{aiActive==='charge'?'active':''}}" bindtap="onAiTap" data-type="charge">
+        <text class="l-ai-icon">⚡</text>
+        <text class="l-ai-label">充电比价</text>
+      </view>
+    </view>
+
+    <!-- AI提示词弹出 -->
+    <view class="ai-popup" wx:if="{{showAiPrompts}}" catchtap="onAiClose">
+      <view class="ai-popup-mask"></view>
+      <view class="ai-popup-card">
+        <view class="ai-popup-header">
+          <text class="ai-popup-title">💡 试试这些搜索</text>
+          <text class="ai-popup-close" bindtap="onAiClose">✕</text>
+        </view>
+        <view class="ai-popup-body">
+          <view class="ai-prompt-item" wx:for="{{aiPrompts}}" wx:key="*this" bindtap="onAiPromptTap" data-prompt="{{item}}">
+            <text>{{item}}</text>
+            <text class="ai-prompt-arrow">→</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部搜索栏（两行布局） -->
+    <view class="l-search-bar">
+      <!-- 第一行：纯搜索输入框 -->
+      <view class="l-search-row1">
+        <view class="l-search-wrap">
+          <input class="l-search-input" value="{{searchValue}}" placeholder="输入目的地，搜一下最省钱的停车方案" bindinput="onSearchInput" bindconfirm="onSearchConfirm" confirm-type="search"/>
+          <view class="l-search-clear" wx:if="{{searchValue}}" catchtap="onSearchClear">
+            <text>✕</text>
+          </view>
+        </view>
+      </view>
+      <!-- 第二行：发送按钮 + 按住说话 -->
+      <view class="l-search-row2">
+        <view class="l-search-send" bindtap="onSearchConfirm">
+          <text class="l-search-send-text">发送</text>
+        </view>
+        <view class="l-search-voice-btn" bindtouchstart="onVoiceStart" bindtouchend="onVoiceEnd">
+          <text wx:if="{{!isRecording}}">🎙️ 按住提问</text>
+          <text wx:else class="recording-text">🔴 松开发送</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ========================================== -->
+  <!-- ====== 停车列表子视图 ====== -->
+  <!-- ========================================== -->
+  <view class="parking-view" wx:if="{{currentView==='parking'}}">
+    <!-- ====== 冻结头部（不随列表滚动） ====== -->
+    <view class="parking-header">
+      <!-- 停车列表顶部栏 -->
+      <view class="p-topbar" style="padding-top:{{statusBarHeight-29}}rpx">
+        <view class="p-back" bindtap="onBackLanding">
+          <text>← 首页</text>
+        </view>
+        <text class="p-title">全部车场</text>
+        <view></view>
+      </view>
+
+      <!-- 搜索 -->
+      <view class="search-bar">
+        <view class="search-box-wrap">
+          <input class="search-box-input" value="{{searchValue}}" placeholder="搜索停车场名称" bindinput="onSearchInput" bindconfirm="onSearchConfirm" confirm-type="search"/>
+          <view class="search-clear-btn" wx:if="{{searchValue}}" catchtap="onSearchClear">
+            <text>✕</text>
+          </view>
+        </view>
+        <view class="search-send-btn" bindtap="onSearchConfirm">
+          <text class="search-send-text">发送</text>
+        </view>
+      </view>
+
+      <!-- 月卡/次卡 -->
+      <view class="card-tabs">
+        <view class="card-tab {{cardType==='monthly'?'on':''}}" bindtap="onSwitchCard" data-type="monthly">月卡</view>
+        <view class="card-tab {{cardType==='count'?'on':''}}" bindtap="onSwitchCard" data-type="count">次卡</view>
+      </view>
+
+      <!-- 筛选按钮行（纯文字，单行） -->
+      <view class="filter-row">
+        <view class="f-btn f-btn-city {{selCity?'active':''}}" bindtap="onToggleCity">
+          <text>{{selCity||'城市'}}</text>
+          <text class="f-arrow">▼</text>
+        </view>
+        <view class="f-btn {{sortBy?'active':''}}" bindtap="onToggleSortDrop">
+          <text>智能筛选</text>
+          <text class="f-badge" wx:if="{{sortBy}}">1</text>
+          <text class="f-arrow">▼</text>
+        </view>
+        <view class="f-btn {{selDistricts.length?'active':''}}" bindtap="onOpenDistrict">
+          <text>区域筛选</text>
+          <text class="f-badge" wx:if="{{selDistricts.length}}">{{selDistricts.length}}</text>
+          <text class="f-arrow">▼</text>
+        </view>
+        <view class="f-btn {{selPeriods.length||selType?'active':''}}" bindtap="onOpenFilter">
+          <text>条件筛选</text>
+          <text class="f-badge" wx:if="{{selPeriods.length||selType}}">{{selPeriods.length+(selType?1:0)+selSubs.length}}</text>
+          <text class="f-arrow">▼</text>
+        </view>
+      </view>
+
+      <!-- 排序下拉 -->
+      <view class="f-drop" wx:if="{{showSortDrop}}">
+        <view class="f-drop-item {{sortBy==='distance'?'on':''}}" bindtap="onSortDistance">位置最近</view>
+        <view class="f-drop-item {{sortBy==='price'?'on':''}}" bindtap="onSortPrice">价格最低</view>
+      </view>
+
+      <!-- 城市下拉 -->
+      <view class="f-drop" wx:if="{{showCityDrop}}">
+        <view class="f-drop-item near-me" bindtap="onNearMe">📍 我的位置</view>
+        <view class="f-drop-item {{selCity==='深圳'?'on':''}}" bindtap="onPickCity" data-city="深圳">深圳</view>
+        <view class="f-drop-item {{selCity==='广州'?'on':''}}" bindtap="onPickCity" data-city="广州">广州</view>
+        <view class="f-drop-item {{selCity==='佛山'?'on':''}}" bindtap="onPickCity" data-city="佛山">佛山</view>
+        <view class="f-drop-item {{selCity==='珠海'?'on':''}}" bindtap="onPickCity" data-city="珠海">珠海</view>
+      </view>
+
+      <!-- 已选筛选标签 -->
+      <view class="active-tags" wx:if="{{showFilterTags.length||selDistricts.length}}">
+        <view class="tag-item" wx:for="{{selDistricts}}" wx:key="*this" bindtap="onPickDistrict" data-value="{{item}}">{{item}} ✕</view>
+        <view class="tag-item" wx:for="{{selStreets}}" wx:key="*this" bindtap="onPickStreet" data-value="{{item}}">{{item}} ✕</view>
+        <view class="tag-item" wx:for="{{showFilterTags}}" wx:key="*this" bindtap="onTagRemove" data-value="{{item}}">{{item}} ✕</view>
+        <view class="tag-clear" bindtap="onResetAll">全部清除</view>
+      </view>
+    </view>
+
+    <!-- ====== AI 搜索分析框（已隐藏） ====== -->
+    <!--
+    <view class="ai-analysis-box" wx:if="{{aiAnalysis&&aiAnalysis.steps}}">
+      <view class="ai-analysis-header">
+        <text class="ai-analysis-icon">🧠</text>
+        <text class="ai-analysis-title">AI 搜索分析</text>
+        <text class="ai-analysis-query">"{{aiAnalysis.query}}"</text>
+        <view class="ai-analysis-expand" wx:if="{{aiAnalysis.resolved}}" bindtap="onToggleAiAnalysis">{{aiAnalysis._collapsed?'展开':'收起'}}</view>
+      </view>
+      <view class="ai-analysis-body" wx:if="{{!aiAnalysis._collapsed}}">
+        <view class="ai-step" wx:for="{{aiAnalysis.steps}}" wx:key="index">
+          <view class="ai-step-dot {{item.status}}">
+            <text wx:if="{{item.status==='done'}}">✓</text>
+            <text wx:elif="{{item.status==='error'}}">✗</text>
+            <text wx:elif="{{item.status==='running'}}">●</text>
+          </view>
+          <view class="ai-step-content">
+            <text class="ai-step-label">{{item.label}}</text>
+            <text class="ai-step-text {{item.status}}">{{item.text}}</text>
+          </view>
+        </view>
+        <view class="ai-analysis-summary" wx:if="{{aiAnalysis.resolved&&aiAnalysis.total>0}}">
+          <text>✅ 共为您找到 <text class="ai-summary-num">{{aiAnalysis.total}}</text> 个停车场</text>
+        </view>
+        <view class="ai-disclaimer">本内容由AI生成，仅供参考</view>
+      </view>
+    </view>
+    -->
+
+    <!-- ====== 可滚动车场列表 ====== -->
+    <scroll-view class="parking-scroll" scroll-y enhanced show-scrollbar="{{false}}" lower-threshold="200" scroll-top="{{scrollToTop}}" bindscrolltolower="onLoadMore" bindscroll="onScroll">
+      <view class="list-wrap">
+        <view class="result-info" wx:if="{{!loading}}">共{{total}}个停车场</view>
+        <view class="pk-item" wx:for="{{list}}" wx:key="_id" bindtap="onTapItem" data-id="{{item._id}}">
+          <view class="pi-row"><text class="pi-name">{{item.name}}</text>
+            <view class="pi-price">
+              <text class="pi-low" wx:if="{{cardType=='count'}}">低至：</text>
+              <text class="pi-curr" wx:if="{{cardType!='count'}}">¥</text>
+              <text class="pi-num">{{filters.safePrice(item.minPrice)}}</text>
+              <text class="pi-unit">{{cardType=='count'?'元/次':'/月'}}</text>
+            </view>
+          </view>
+          <view class="pi-row2"><text class="pi-addr">📍 {{item.address}}</text><text class="pi-dist">{{item.distance}}</text></view>
+        </view>
+        <view class="empty" wx:if="{{list.length===0&&!loading}}">📭 无匹配结果</view>
+        <view class="loading-more" wx:if="{{loading}}">加载中...</view>
+      </view>
+    </scroll-view>
+
+    <!-- ====== 右侧滚动进度条（可拖拽） ====== -->
+    <view class="scroll-progress" wx:if="{{list.length>0&&total>20}}" catchtouchstart="onProgressTouchStart" catchtouchmove="onProgressTouchMove" catchtouchend="onProgressTouchEnd">
+      <view class="sp-track">
+        <view class="sp-thumb" style="top:{{scrollProgress}}%;height:{{scrollThumbHeight}}%"></view>
+      </view>
+    </view>
+
+    <!-- ====== 条件筛选面板 ====== -->
+    <view class="fp-overlay" wx:if="{{showFilterPanel}}"></view>
+    <view class="fp-panel" wx:if="{{showFilterPanel}}">
+      <view class="fp-head"><text class="fp-title">🔍 条件筛选</text><view class="fp-head-right"><text class="fp-reset" bindtap="onResetFilter">重置</text><text class="fp-close" bindtap="onCloseFilter">✕</text></view></view>
+      <view class="fp-body">
+        <view class="fp-sec" wx:if="{{filterStep>=0&&cardType!=='count'}}">
+          <text class="fp-label">选择周期 (多选)</text>
+          <view class="fp-grid">
+            <view class="fp-chip {{filters.inArray(selPeriods,item)?'on':''}}" hover-class="fp-chip-press" wx:for="{{filterTreeKeys}}" wx:key="*this" bindtap="onPickPeriod" data-value="{{item}}">{{item}}</view>
+          </view>
+        </view>
+        <view class="fp-sec" wx:if="{{selPeriods.length&&filterStep>=1}}">
+          <text class="fp-label">选择类型 (单选)</text>
+          <view class="fp-grid">
+            <view class="fp-chip {{selType===item?'on':''}}" hover-class="fp-chip-press" wx:for="{{curTypes}}" wx:key="*this" bindtap="onPickType" data-value="{{item}}">{{item}}</view>
+          </view>
+        </view>
+        <view class="fp-sec" wx:if="{{selType&&filterStep>=2}}">
+          <text class="fp-label">选择细分 (多选)</text>
+          <view class="fp-grid">
+            <view class="fp-chip {{filters.inArray(selSubs,item)?'on':''}}" hover-class="fp-chip-press" wx:for="{{curSubs}}" wx:key="*this" bindtap="onPickSub" data-value="{{item}}">{{item}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="fp-foot"><view class="fp-confirm" bindtap="onConfirmFilter">确认筛选</view></view>
+    </view>
+
+    <!-- ====== 区域筛选面板 ====== -->
+    <view class="fp-overlay" wx:if="{{showDistrictPanel}}"></view>
+    <view class="fp-panel" wx:if="{{showDistrictPanel}}">
+      <view class="fp-head"><text class="fp-title">📍 区域筛选</text><view class="fp-head-right"><text class="fp-reset" bindtap="onResetDistrict">重置</text><text class="fp-close" bindtap="onCloseDistrict">✕</text></view></view>
+      <view class="fp-body">
+        <view class="fp-sec">
+          <text class="fp-label">选择区域 (多选)</text>
+          <view class="fp-grid">
+            <view class="fp-chip {{filters.inArray(selDistricts,item.name)?'on':''}}" wx:for="{{filterOptions.districts}}" wx:key="name" bindtap="onPickDistrict" data-value="{{item.name}}">{{item.name}}<text class="fp-chip-count"> ({{item.count}})</text></view>
+          </view>
+        </view>
+        <view class="fp-sec" wx:if="{{selDistricts.length}}">
+          <text class="fp-label">选择街道 (多选)</text>
+          <view class="fp-grid">
+            <view class="fp-chip {{filters.inArray(selStreets,item)?'on':''}}" wx:for="{{curStreets}}" wx:key="*this" bindtap="onPickStreet" data-value="{{item}}">{{item}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="fp-foot"><view class="fp-confirm" bindtap="onConfirmDistrict">确认筛选</view></view>
+    </view>
+  </view>
+
+  <!-- ========================================== -->
+  <!-- ====== 左侧菜单 ====== -->
+  <!-- ========================================== -->
+  <view class="menu-overlay" wx:if="{{showMenu}}" bindtap="onCloseMenu"></view>
+  <view class="side-menu {{showMenu?'open':''}}">
+    <view class="sm-hd">
+      <image class="sm-logo" src="/static/logo.png"></image>
+      <view>
+        <text class="sm-brand">粤停汇</text>
+        <text class="sm-sub">就是便宜</text>
+      </view>
+    </view>
+    <scroll-view class="sm-body" scroll-y>
+      <view class="sm-item sm-item-msg" bindtap="onMenuItem" data-route="/pages/messages/messages">
+        <text class="sm-ico">✉️</text>消息
+        <view wx:if="{{unreadCount>0}}" class="sm-badge">{{unreadCount>99?'99+':unreadCount}}</view>
+      </view>
+      <view class="sm-item" bindtap="onMenuItem" data-route="/pages/mine/mine"><text class="sm-ico">👤</text>我的</view>
+      <view class="sm-item" bindtap="onMenuItem" data-route="/pages/order-list/order-list"><text class="sm-ico">📋</text>我的订单</view>
+      <view class="sm-item" bindtap="onMenuItem" data-route="/pages/favorites/favorites"><text class="sm-ico">❤️</text>我的收藏</view>
+      <view class="sm-item" bindtap="onMenuItem" data-route="/pages/profile/profile"><text class="sm-ico">🚗</text>我的车辆</view>
+      <view class="sm-item" bindtap="onMenuItem" data-route="/pages/coupons/coupons"><text class="sm-ico">🎟️</text>我的优惠券</view>
+      <view class="sm-item sm-item-highlight" bindtap="onMenuItem" data-route="/pages/feedback/feedback">
+        <text class="sm-ico">📝</text>留言建议有奖
+        <text class="sm-tag">💎30元</text>
+      </view>
+      <view class="sm-dv"></view>
+      <view class="sm-dv"></view>
+      <view class="sm-item" bindtap="onMenuItem" data-route="parking"><text class="sm-ico">🅿️</text>全部车场</view>
+      <view class="sm-item" bindtap="onMenuItem" data-route="/pages/map/map"><text class="sm-ico">🗺️</text>停车地图</view>
+      <view class="sm-item" bindtap="onMenuItem" data-route="promo"><text class="sm-ico">💰</text>优惠活动</view>
+      <view class="sm-dv"></view>
+      <view class="sm-item sm-item-gold" bindtap="onMenuItem" data-route="/pages/cooperation/cooperation">
+        <text class="sm-ico">🤝</text>项目推荐及合作有奖
+        <text class="sm-tag-gold">💰有奖</text>
+      </view>
+      <view class="sm-dv"></view>
+      <view class="sm-item sm-item-property" bindtap="onMenuItem" data-route="/pages-property/login/login">
+        <text class="sm-ico">🏢</text>我是物业 / 业委会
+        <text class="sm-tag-property">→ 进入</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

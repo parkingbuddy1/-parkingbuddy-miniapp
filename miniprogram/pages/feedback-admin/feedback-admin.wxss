@@ -1,0 +1,13 @@
+.page{min-height:100vh;background:var(--bg-deep)}
+.list-wrap{padding:20rpx}
+.fb-card{background:var(--bg-card);border-radius:16rpx;padding:20rpx;margin-bottom:16rpx;box-shadow:var(--shadow-sm)}
+.fb-meta{display:flex;justify-content:space-between;margin-bottom:12rpx}
+.fb-phone{font-size:24rpx;color:var(--primary);font-weight:600}
+.fb-time{font-size:22rpx;color:var(--text-muted)}
+.fb-content{font-size:26rpx;color:var(--text-primary);line-height:1.8;margin-bottom:16rpx;background:#F8FAFC;padding:16rpx;border-radius:12rpx}
+.fb-actions{display:flex;gap:12rpx}
+.fb-btn{flex:1;text-align:center;padding:14rpx 0;border-radius:32rpx;font-size:24rpx;font-weight:600}
+.fb-btn.adopt{background:rgba(5,150,105,0.1);color:#059669}
+.fb-btn.hold{background:rgba(249,115,22,0.08);color:#F97316}
+.fb-btn.reject{background:rgba(239,68,68,0.08);color:#EF4444}
+.dialog-input{width:100%;min-height:120rpx;background:#F1F5F9;border-radius:12rpx;padding:12rpx;font-size:26rpx;box-sizing:border-box;margin-top:12rpx}

@@ -1,0 +1,200 @@
+{"_id": "pkg_02201", "parkingId": "lot_1074", "name": "全天套餐1年", "period": "每天00:00-23:59", "originalPrice": 4000, "price": 4560, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02202", "parkingId": "lot_1074", "name": "全天套餐半年", "period": "每天00:00-23:59", "originalPrice": 2500, "price": 2400, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02203", "parkingId": "lot_1075", "name": "夜间A套餐1月", "period": "每天18:30-08:30", "originalPrice": 300, "price": 240, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02204", "parkingId": "lot_1075", "name": "夜间B套餐1月", "period": "工作日18:30-08:30; 周末节假日00:00-23:59", "originalPrice": 400, "price": 360, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02205", "parkingId": "lot_1075", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 550, "price": 540, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02206", "parkingId": "lot_1076", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 500, "price": 336, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02207", "parkingId": "lot_1076", "name": "全天套餐1月", "period": "", "originalPrice": 500, "price": 276, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02208", "parkingId": "lot_1076", "name": "全天套餐1季", "period": "每天00:00-23:59", "originalPrice": 800, "price": 936, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02209", "parkingId": "lot_1077", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 300, "price": 336, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02210", "parkingId": "lot_1077", "name": "全天套餐1月", "period": "", "originalPrice": 350, "price": 360, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02211", "parkingId": "lot_1078", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 360, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02212", "parkingId": "lot_1078", "name": "全天套餐1月", "period": "", "originalPrice": 400, "price": 384, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02213", "parkingId": "lot_1079", "name": "长停套餐1月", "period": "每天00:00-23:59", "originalPrice": 600, "price": 720, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02214", "parkingId": "lot_1079", "name": "夜间套餐1月", "period": "工作日18:00-08:30; 周末节假日00:00-23:59", "originalPrice": 400, "price": 360, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02215", "parkingId": "lot_1080", "name": "白天套餐1月", "period": "工作日08:00-19:30", "originalPrice": 320, "price": 360, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02216", "parkingId": "lot_1081", "name": "夜间套餐1月", "period": "工作日18:00-09:00; 周末节假日00:00-23:59", "originalPrice": 300, "price": 240, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02217", "parkingId": "lot_1082", "name": "夜间套餐1月", "period": "工作日18:00-08:30; 周末节假日00:00-23:59", "originalPrice": 400, "price": 360, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02218", "parkingId": "lot_1083", "name": "夜间套餐1夜", "period": "每天18:30-08:00", "originalPrice": 60, "price": 12, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02219", "parkingId": "lot_1083", "name": "夜间套餐1月", "period": "工作日18:30-08:00; 周末节假日00:00-23:59", "originalPrice": 380, "price": 336, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02220", "parkingId": "lot_1084", "name": "全天套餐1月", "period": "", "originalPrice": 600, "price": 480, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02221", "parkingId": "lot_1084", "name": "全天套餐1月", "period": "", "originalPrice": 600, "price": 720, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02222", "parkingId": "lot_1084", "name": "夜间套餐1月", "period": "", "originalPrice": 600, "price": 360, "recommended": true, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02223", "parkingId": "lot_1085", "name": "全天套餐1月", "period": "", "originalPrice": 350, "price": 396, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02224", "parkingId": "lot_1085", "name": "全天套餐10天2次", "period": "", "originalPrice": 50, "price": 45, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02225", "parkingId": "lot_1085", "name": "白天套餐1月", "period": "", "originalPrice": 250, "price": 238, "recommended": true, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02226", "parkingId": "lot_1086", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 264, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02227", "parkingId": "lot_1086", "name": "夜间套餐1月", "period": "每天18:00-08:00", "originalPrice": 200, "price": 180, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02228", "parkingId": "lot_1087", "name": "全天套餐1天", "period": "", "originalPrice": 30, "price": 14, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02229", "parkingId": "lot_1087", "name": "夜间套餐1月", "period": "", "originalPrice": 600, "price": 420, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02230", "parkingId": "lot_1087", "name": "全天套餐1月", "period": "", "originalPrice": 650, "price": 720, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02231", "parkingId": "lot_1088", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 288, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02232", "parkingId": "lot_1088", "name": "全天套餐1月", "period": "", "originalPrice": 350, "price": 300, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02233", "parkingId": "lot_1089", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 500, "price": 504, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02234", "parkingId": "lot_1089", "name": "全天套餐1季", "period": "每天00:00-23:59", "originalPrice": 1500, "price": 1500, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02235", "parkingId": "lot_1090", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 420, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02236", "parkingId": "lot_1090", "name": "全天套餐1季", "period": "每天00:00-23:59", "originalPrice": 1200, "price": 1176, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02237", "parkingId": "lot_1090", "name": "全天套餐1月", "period": "", "originalPrice": 400, "price": 432, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02238", "parkingId": "lot_1091", "name": "夜间套餐1月", "period": "工作日18:00-08:00; 周末节假日00:00-23:59", "originalPrice": 300, "price": 240, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02239", "parkingId": "lot_1092", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 360, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02240", "parkingId": "lot_1093", "name": "白天套餐1月", "period": "每天07:00-19:00", "originalPrice": 500, "price": 360, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02241", "parkingId": "lot_1094", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 384, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02242", "parkingId": "lot_1094", "name": "白天套餐1月", "period": "每天08:30-19:00", "originalPrice": 300, "price": 180, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02243", "parkingId": "lot_1094", "name": "白天套餐15天3次", "period": "每天08:30-19:00", "originalPrice": 60, "price": 28, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02244", "parkingId": "lot_1095", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 260, "price": 156, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02245", "parkingId": "lot_1095", "name": "全天套餐1天", "period": "每天00:00-23:59", "originalPrice": 35, "price": 8, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02246", "parkingId": "lot_1095", "name": "全天套餐1月", "period": "", "originalPrice": 250, "price": 165, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02247", "parkingId": "lot_1096", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 600, "price": 600, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02248", "parkingId": "lot_1096", "name": "夜间套餐1月", "period": "每天19:00-08:00", "originalPrice": 300, "price": 324, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02249", "parkingId": "lot_1097", "name": "全天套餐1天", "period": "", "originalPrice": 35, "price": 36, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02250", "parkingId": "lot_1097", "name": "全天套餐1月", "period": "", "originalPrice": 600, "price": 624, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02251", "parkingId": "lot_1097", "name": "夜间套餐1月", "period": "", "originalPrice": 400, "price": 360, "recommended": true, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02252", "parkingId": "lot_1098", "name": "全天套餐1月", "period": "", "originalPrice": 900, "price": 1044, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02253", "parkingId": "lot_1099", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 750, "price": 816, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02254", "parkingId": "lot_1099", "name": "全天套餐1月", "period": "", "originalPrice": 750, "price": 744, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02255", "parkingId": "lot_1100", "name": "白天套餐1月", "period": "工作日08:00-19:00; 周末节假日00:00-23:59", "originalPrice": 200, "price": 204, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02256", "parkingId": "lot_1100", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 380, "price": 384, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02257", "parkingId": "lot_1101", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 1000, "price": 960, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02258", "parkingId": "lot_1101", "name": "全天套餐1月", "period": "", "originalPrice": 1000, "price": 984, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02259", "parkingId": "lot_1101", "name": "夜间套餐1月", "period": "工作日17:30-08:30; 周末节假日00:00-23:59", "originalPrice": 800, "price": 468, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02260", "parkingId": "lot_1102", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 408, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02261", "parkingId": "lot_1103", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 800, "price": 840, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02262", "parkingId": "lot_1103", "name": "夜间套餐1月", "period": "工作日19:00-07:00; 周末节假日00:00-23:59", "originalPrice": 400, "price": 360, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02263", "parkingId": "lot_1104", "name": "白天套餐1日", "period": "", "originalPrice": 20, "price": 13, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02264", "parkingId": "lot_1104", "name": "白天套餐1月", "period": "", "originalPrice": 300, "price": 240, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02265", "parkingId": "lot_1104", "name": "全天套餐1月", "period": "", "originalPrice": 400, "price": 360, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02266", "parkingId": "lot_1105", "name": "夜间套餐1月", "period": "工作日18:30-08:30; 周末节假日00:00-23:59", "originalPrice": 601, "price": 540, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02267", "parkingId": "lot_1105", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 850, "price": 840, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02268", "parkingId": "lot_1106", "name": "夜间套餐1月", "period": "工作日18:30-08:00; 周末节假日00:00-23:59", "originalPrice": 600, "price": 240, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02269", "parkingId": "lot_1106", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 700, "price": 780, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02270", "parkingId": "lot_1107", "name": "全天套餐1月", "period": "工作日00:00-23:59", "originalPrice": 500, "price": 540, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02271", "parkingId": "lot_1107", "name": "夜间套餐1月", "period": "工作日21:00-09:00", "originalPrice": 400, "price": 240, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02272", "parkingId": "lot_1107", "name": "白天套餐1月", "period": "工作日07:00-19:00", "originalPrice": 400, "price": 360, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02273", "parkingId": "lot_1108", "name": "夜间套餐1季", "period": "工作日19:00-08:00; 周末节假日00:00-23:59", "originalPrice": 900, "price": 648, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02274", "parkingId": "lot_1108", "name": "夜间套餐1月", "period": "工作日18:00-08:30; 周末节假日00:00-23:59", "originalPrice": 300, "price": 240, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02275", "parkingId": "lot_1108", "name": "夜间套餐1夜", "period": "每天18:00-08:30", "originalPrice": 50, "price": 18, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02276", "parkingId": "lot_1109", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 420, "price": 480, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02277", "parkingId": "lot_1109", "name": "全天套餐1季", "period": "每天00:00-23:59", "originalPrice": 1200, "price": 1260, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02278", "parkingId": "lot_1109", "name": "夜间套餐1月", "period": "工作日18:00-08:00; 周末节假日00:00-23:59", "originalPrice": 250, "price": 216, "recommended": true, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02279", "parkingId": "lot_1110", "name": "全天套餐1季", "period": "每天00:00-23:59", "originalPrice": 1800, "price": 1560, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02280", "parkingId": "lot_1110", "name": "长停套餐1月", "period": "每天00:00-23:59", "originalPrice": 450, "price": 456, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02281", "parkingId": "lot_1110", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 600, "price": 540, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02282", "parkingId": "lot_1111", "name": "白天套餐1月", "period": "每天08:00-19:00", "originalPrice": 300, "price": 240, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02283", "parkingId": "lot_1112", "name": "夜间套餐1月", "period": "工作日19:00-08:30; 周末节假日00:00-23:59", "originalPrice": 400, "price": 298, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02284", "parkingId": "lot_1112", "name": "夜间套餐7天2次", "period": "每天19:00-08:30", "originalPrice": 78, "price": 34, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02285", "parkingId": "lot_1112", "name": "全天套餐1天", "period": "周末00:00-23:59", "originalPrice": 60, "price": 64, "recommended": true, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02286", "parkingId": "lot_1113", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 900, "price": 900, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02287", "parkingId": "lot_1113", "name": "夜间套餐1月", "period": "每天19:00-09:00", "originalPrice": 700, "price": 480, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02288", "parkingId": "lot_1113", "name": "全天套餐1月", "period": "", "originalPrice": 800, "price": 960, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02289", "parkingId": "lot_1114", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 324, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02290", "parkingId": "lot_1114", "name": "长停套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 300, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02291", "parkingId": "lot_1114", "name": "全天套餐1月", "period": "", "originalPrice": 350, "price": 360, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02292", "parkingId": "lot_1115", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 420, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02293", "parkingId": "lot_1116", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 500, "price": 418, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02294", "parkingId": "lot_1116", "name": "白天套餐1日", "period": "每天08:30-19:00", "originalPrice": 20, "price": 11, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02295", "parkingId": "lot_1116", "name": "全天套餐1天", "period": "每天00:00-23:59", "originalPrice": 20, "price": 20, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02296", "parkingId": "lot_1117", "name": "夜间套餐1夜", "period": "每天18:30-08:30", "originalPrice": 35, "price": 18, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02297", "parkingId": "lot_1117", "name": "全天套餐半年", "period": "每天00:00-23:59", "originalPrice": 3900, "price": 4392, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02298", "parkingId": "lot_1117", "name": "全天套餐1天", "period": "周末节假日00:00-23:59", "originalPrice": 35, "price": 30, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02299", "parkingId": "lot_1118", "name": "夜间套餐1月", "period": "工作日18:30-08:30; 周末节假日00:00-23:59", "originalPrice": 350, "price": 324, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02300", "parkingId": "lot_1119", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 300, "price": 324, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02301", "parkingId": "lot_1120", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 300, "price": 276, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02302", "parkingId": "lot_1121", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 420, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02303", "parkingId": "lot_1121", "name": "长停套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 312, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02304", "parkingId": "lot_1121", "name": "夜间套餐1月", "period": "工作日18:00-09:00; 周末节假日00:00-23:59", "originalPrice": 300, "price": 312, "recommended": true, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02305", "parkingId": "lot_1122", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 600, "price": 672, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02306", "parkingId": "lot_1122", "name": "夜间套餐1·月", "period": "工作日18:00-09:00; 周末节假日00:00-23:59", "originalPrice": 450, "price": 492, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02307", "parkingId": "lot_1122", "name": "全天限时特惠套餐1月", "period": "每天00:00-23:59", "originalPrice": 550, "price": 612, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02308", "parkingId": "lot_1123", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 342, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02309", "parkingId": "lot_1123", "name": "全天套餐1月", "period": "", "originalPrice": 400, "price": 408, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02310", "parkingId": "lot_1124", "name": "全天套餐1月", "period": "", "originalPrice": 800, "price": 900, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02311", "parkingId": "lot_1124", "name": "周末&节假日套餐1天", "period": "", "originalPrice": 60, "price": 36, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02312", "parkingId": "lot_1124", "name": "夜间套餐1夜", "period": "", "originalPrice": 60, "price": 24, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02313", "parkingId": "lot_1125", "name": "全天套餐1月", "period": "", "originalPrice": 900, "price": 1044, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02314", "parkingId": "lot_1125", "name": "夜间套餐B1月", "period": "", "originalPrice": 870, "price": 240, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02315", "parkingId": "lot_1125", "name": "夜间套餐A1月", "period": "", "originalPrice": 870, "price": 360, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02316", "parkingId": "lot_1126", "name": "夜间套餐1月", "period": "工作日18:00-08:30; 周末节假日00:00-23:59", "originalPrice": 350, "price": 312, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02317", "parkingId": "lot_1126", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 500, "price": 480, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02318", "parkingId": "lot_1127", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 358, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02319", "parkingId": "lot_1127", "name": "全天套餐1月", "period": "", "originalPrice": 400, "price": 384, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02320", "parkingId": "lot_1128", "name": "长停套餐1月", "period": "每天00:00-23:59", "originalPrice": 600, "price": 384, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02321", "parkingId": "lot_1128", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 600, "price": 348, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02322", "parkingId": "lot_1128", "name": "长停套餐1月", "period": "", "originalPrice": 600, "price": 384, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02323", "parkingId": "lot_1129", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 500, "price": 480, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02324", "parkingId": "lot_1130", "name": "夜间套餐1月", "period": "工作日18:00-08:00; 周末节假日00:00-23:59", "originalPrice": 199, "price": 190, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02325", "parkingId": "lot_1130", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 396, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02326", "parkingId": "lot_1130", "name": "全天套餐1月", "period": "", "originalPrice": 400, "price": 360, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02327", "parkingId": "lot_1131", "name": "全天套餐1月", "period": "", "originalPrice": 1000, "price": 900, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02328", "parkingId": "lot_1132", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 799, "price": 720, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02329", "parkingId": "lot_1132", "name": "长停套餐1月", "period": "每天00:00-23:59", "originalPrice": 600, "price": 480, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02330", "parkingId": "lot_1132", "name": "全天套餐1月", "period": "", "originalPrice": 799, "price": 720, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02331", "parkingId": "lot_1133", "name": "长停套餐1月", "period": "每天00:00-23:59", "originalPrice": 650, "price": 480, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02332", "parkingId": "lot_1133", "name": "白天套餐1月", "period": "工作日08:00-18:30", "originalPrice": 500, "price": 420, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02333", "parkingId": "lot_1133", "name": "白天套餐B1月", "period": "每天09:00-20:00", "originalPrice": 500, "price": 420, "recommended": true, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02334", "parkingId": "lot_1134", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 500, "price": 480, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02335", "parkingId": "lot_1135", "name": "夜间套餐1月", "period": "工作日18:30-08:30; 周末节假日00:00-23:59", "originalPrice": 350, "price": 298, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02336", "parkingId": "lot_1135", "name": "夜间套餐1夜", "period": "每天18:00-08:00", "originalPrice": 25, "price": 18, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02337", "parkingId": "lot_1135", "name": "全天套餐1天", "period": "周末节假日00:00-23:59", "originalPrice": 35, "price": 30, "recommended": true, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02338", "parkingId": "lot_1136", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 500, "price": 276, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02339", "parkingId": "lot_1136", "name": "白天套餐1月", "period": "工作日08:00-19:00; 周末节假日00:00-23:59", "originalPrice": 109, "price": 120, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02340", "parkingId": "lot_1136", "name": "白天套餐1日", "period": "每天08:00-19:00", "originalPrice": 10, "price": 9, "recommended": true, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02341", "parkingId": "lot_1137", "name": "夜间套餐1月", "period": "", "originalPrice": 600, "price": 358, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02342", "parkingId": "lot_1137", "name": "周末单次卡", "period": "", "originalPrice": 60, "price": 54, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02343", "parkingId": "lot_1137", "name": "全天套餐1月", "period": "", "originalPrice": 1300, "price": 1440, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02344", "parkingId": "lot_1138", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 420, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02345", "parkingId": "lot_1138", "name": "夜间套餐1月", "period": "每天18:30-09:00", "originalPrice": 200, "price": 118, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02346", "parkingId": "lot_1138", "name": "夜间套餐1月", "period": "", "originalPrice": 200, "price": 180, "recommended": true, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02347", "parkingId": "lot_1139", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 900, "price": 744, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02348", "parkingId": "lot_1139", "name": "夜间套餐1月", "period": "工作日19:00-08:00; 周末节假日00:00-23:59", "originalPrice": 400, "price": 358, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02349", "parkingId": "lot_1139", "name": "夜间套餐1夜", "period": "每天19:00-08:00", "originalPrice": 60, "price": 24, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02350", "parkingId": "lot_1140", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 480, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02351", "parkingId": "lot_1141", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 500, "price": 480, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02352", "parkingId": "lot_1142", "name": "白天套餐1月", "period": "每天08:00-18:30", "originalPrice": 300, "price": 300, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02353", "parkingId": "lot_1143", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 348, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02354", "parkingId": "lot_1144", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 300, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02355", "parkingId": "lot_1145", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 372, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02356", "parkingId": "lot_1146", "name": "夜间套餐1夜", "period": "每天18:00-08:30", "originalPrice": 30, "price": 11, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02357", "parkingId": "lot_1146", "name": "全天套餐15天2次", "period": "每天00:00-23:59", "originalPrice": 60, "price": 48, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02358", "parkingId": "lot_1146", "name": "白天套餐1月", "period": "每天08:30-19:00", "originalPrice": 400, "price": 336, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02359", "parkingId": "lot_1147", "name": "夜间套餐1月", "period": "", "originalPrice": 400, "price": 384, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02360", "parkingId": "lot_1148", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 1100, "price": 1212, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02361", "parkingId": "lot_1148", "name": "长停套餐1月", "period": "每天00:00-23:59", "originalPrice": 1010, "price": 420, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02362", "parkingId": "lot_1148", "name": "夜间套餐1次", "period": "每天18:30-08:30", "originalPrice": 30, "price": 30, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02363", "parkingId": "lot_1149", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 299, "price": 336, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02364", "parkingId": "lot_1149", "name": "全天套餐1月", "period": "", "originalPrice": 320, "price": 360, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02365", "parkingId": "lot_1150", "name": "夜间套餐1月", "period": "", "originalPrice": 250, "price": 216, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02366", "parkingId": "lot_1151", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 800, "price": 936, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02367", "parkingId": "lot_1151", "name": "夜间套餐1月", "period": "工作日18:30-08:00; 周末节假日00:00-23:59", "originalPrice": 400, "price": 420, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02368", "parkingId": "lot_1151", "name": "全天套餐7天2次", "period": "每天00:00-23:59", "originalPrice": 120, "price": 72, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02369", "parkingId": "lot_1152", "name": "长停套餐1月", "period": "每天00:00-23:59", "originalPrice": 330, "price": 336, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02370", "parkingId": "lot_1152", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 396, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02371", "parkingId": "lot_1152", "name": "全天套餐1季", "period": "每天00:00-23:59", "originalPrice": 1200, "price": 1198, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02372", "parkingId": "lot_1153", "name": "全天套餐1月", "period": "", "originalPrice": 400, "price": 300, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02373", "parkingId": "lot_1153", "name": "全天套餐1月", "period": "", "originalPrice": 400, "price": 360, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02374", "parkingId": "lot_1153", "name": "长停套餐1月", "period": "", "originalPrice": 400, "price": 300, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02375", "parkingId": "lot_1154", "name": "全天套餐1月", "period": "", "originalPrice": 400, "price": 420, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02376", "parkingId": "lot_1155", "name": "夜间套餐1月", "period": "工作日18:00-09:00; 周末节假日00:00-23:59", "originalPrice": 300, "price": 240, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02377", "parkingId": "lot_1155", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 400, "price": 420, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02378", "parkingId": "lot_1156", "name": "白天套餐1月", "period": "每天08:30-19:00", "originalPrice": 150, "price": 96, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02379", "parkingId": "lot_1156", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 250, "price": 300, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02380", "parkingId": "lot_1157", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 300, "price": 324, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02381", "parkingId": "lot_1157", "name": "夜间套餐1月", "period": "工作日18:00-09:00; 周末节假日00:00-23:59", "originalPrice": 200, "price": 120, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02382", "parkingId": "lot_1157", "name": "夜间套餐1月", "period": "", "originalPrice": 200, "price": 120, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02383", "parkingId": "lot_1158", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 300, "price": 312, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02384", "parkingId": "lot_1159", "name": "长停套餐1月", "period": "每天00:00-23:59", "originalPrice": 750, "price": 420, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02385", "parkingId": "lot_1159", "name": "白天套餐1月", "period": "工作日09:00-18:00", "originalPrice": 300, "price": 300, "recommended": true, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02386", "parkingId": "lot_1159", "name": "白天套餐30天5次", "period": "每天09:00-18:00", "originalPrice": 75, "price": 60, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02387", "parkingId": "lot_1160", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 500, "price": 600, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02388", "parkingId": "lot_1161", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 360, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02389", "parkingId": "lot_1162", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 360, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02390", "parkingId": "lot_1163", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 350, "price": 360, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02391", "parkingId": "lot_1164", "name": "夜间套餐1月", "period": "工作日18:30-08:30; 周末节假日00:00-23:59", "originalPrice": 400, "price": 432, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02392", "parkingId": "lot_1164", "name": "夜间套餐1月", "period": "每天18:30-08:30", "originalPrice": 400, "price": 360, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02393", "parkingId": "lot_1164", "name": "全天套餐1月", "period": "", "originalPrice": 700, "price": 720, "recommended": false, "unit": "月", "sort": 3, "status": "active"}
+{"_id": "pkg_02394", "parkingId": "lot_1165", "name": "夜间套餐1月", "period": "工作日18:30-08:30; 周末节假日00:00-23:59", "originalPrice": 400, "price": 298, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02395", "parkingId": "lot_1165", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 1200, "price": 1318, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02396", "parkingId": "lot_1166", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 550, "price": 492, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02397", "parkingId": "lot_1166", "name": "全天套餐1月", "period": "", "originalPrice": 550, "price": 480, "recommended": false, "unit": "月", "sort": 2, "status": "active"}
+{"_id": "pkg_02398", "parkingId": "lot_1167", "name": "全天套餐1月", "period": "", "originalPrice": 550, "price": 598, "recommended": false, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02399", "parkingId": "lot_1168", "name": "夜间套餐1月", "period": "工作日18:00-09:00; 周末节假日00:00-23:59", "originalPrice": 600, "price": 540, "recommended": true, "unit": "月", "sort": 1, "status": "active"}
+{"_id": "pkg_02400", "parkingId": "lot_1168", "name": "全天套餐1月", "period": "每天00:00-23:59", "originalPrice": 650, "price": 720, "recommended": false, "unit": "月", "sort": 2, "status": "active"}

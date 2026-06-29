@@ -1,0 +1,42 @@
+<!-- 优惠券页 v2 -->
+<view class="page">
+  <!-- 邀请有礼 -->
+  <view class="invite-banner" bindtap="onShareCoupon">
+    <view class="invite-bg"></view>
+    <view class="invite-content flex-between">
+      <view>
+        <text class="invite-title">🎁 邀请好友，各得30元券</text>
+        <text class="invite-desc">好友通过你的分享下单后，双方各得一张30元抵扣券</text>
+      </view>
+      <view class="invite-btn"><text>立即分享</text></view>
+    </view>
+  </view>
+
+  <!-- 统计 -->
+  <view class="stats-row flex">
+    <view class="stat-item"><text class="stat-val">{{shareCount}}</text><text class="stat-lbl">已邀请</text></view>
+    <view class="stat-item"><text class="stat-val">{{earnedCoupons}}</text><text class="stat-lbl">获得券</text></view>
+  </view>
+
+  <!-- 标签 -->
+  <view class="tabs-wrap">
+    <t-tabs value="{{activeTab}}" bind:change="onTabChange">
+      <t-tab-panel label="可用" value="valid" />
+      <t-tab-panel label="已使用" value="used" />
+      <t-tab-panel label="已过期" value="expired" />
+    </t-tabs>
+  </view>
+
+  <block wx:if="{{coupons.length>0}}">
+    <coupon-card wx:for="{{coupons}}" wx:key="_id" coupon="{{item}}" mode="{{mode}}" bind:select="onSelectCoupon" />
+  </block>
+
+  <view wx:else class="empty-coupons flex-center flex-col">
+    <text class="empty-emoji">🎫</text>
+    <text class="empty-t">暂无优惠券</text>
+    <text class="empty-sub">分享给好友即可获得优惠券</text>
+    <view class="empty-btn" bindtap="onShareCoupon">立即分享赚券</view>
+  </view>
+
+  <view class="safe-bottom bottom-spacer"></view>
+</view>

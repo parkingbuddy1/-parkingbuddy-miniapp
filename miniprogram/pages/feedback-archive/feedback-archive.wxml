@@ -1,0 +1,30 @@
+<!-- 反馈保存箱 -->
+<view class="page">
+  <t-tabs value="{{activeTab}}" bind:change="onTabChange">
+    <t-tab-panel label="已采纳 ({{adopted.length}})" value="adopted">
+      <view class="list-wrap" wx:if="{{adopted.length>0}}">
+        <view class="fb-card" wx:for="{{adopted}}" wx:key="_id">
+          <view class="fb-meta">
+            <text class="fb-phone">📱 {{item.phone}}</text>
+            <text class="fb-tag-adopt">已采纳</text>
+          </view>
+          <view class="fb-content">{{item.content}}</view>
+        </view>
+      </view>
+      <t-empty wx:else description="暂无已采纳反馈" />
+    </t-tab-panel>
+    <t-tab-panel label="已暂存 ({{held.length}})" value="held">
+      <view class="list-wrap" wx:if="{{held.length>0}}">
+        <view class="fb-card" wx:for="{{held}}" wx:key="_id">
+          <view class="fb-meta">
+            <text class="fb-phone">📱 {{item.phone}}</text>
+            <text class="fb-tag-hold">已暂存</text>
+          </view>
+          <view class="fb-content">{{item.content}}</view>
+          <view class="fb-reason" wx:if="{{item.reason}}">暂存理由：{{item.reason}}</view>
+        </view>
+      </view>
+      <t-empty wx:else description="暂无已暂存反馈" />
+    </t-tab-panel>
+  </t-tabs>
+</view>

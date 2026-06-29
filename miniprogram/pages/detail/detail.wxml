@@ -1,0 +1,123 @@
+<!-- 详情页 v4 - 顶部地图 + 团购改名 -->
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="page" wx:if="{{!loading}}">
+  <view style="height:{{statusBarHeight}}px;background:var(--bg-deep)"></view>
+
+  <!-- 返回栏 -->
+  <view class="back-bar">
+    <view class="back-btn" bindtap="onBack"><text>←</text></view>
+    <text class="back-title ellipsis">{{parking.name}}</text>
+    <view class="back-actions">
+      <view class="back-icon-btn" bindtap="onToggleFavorite">
+        <text>{{isFavorite?'❤️':'🤍'}}</text>
+      </view>
+      <view class="back-icon-btn" bindtap="onTapShare">
+        <text>↗️</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 微信地图 -->
+  <map
+    class="detail-map"
+    id="parkingMap"
+    latitude="{{mapCenter.lat}}"
+    longitude="{{mapCenter.lng}}"
+    scale="{{14}}"
+    markers="{{mapMarkers}}"
+    show-location="{{false}}"
+    show-compass="{{true}}"
+    show-scale="{{true}}"
+    enable-scroll="{{false}}"
+    bindmarkertap="onMapMarkerTap"
+    bindtap="onMapMarkerTap"
+  />
+
+  <!-- 基本信息 -->
+  <view class="info card-glass">
+    <view class="flex-between">
+      <text class="info-name">{{parking.name}}</text>
+      <view class="info-rating" wx:if="{{parking.rating}}">⭐{{parking.rating}}</view>
+    </view>
+    <view class="info-fee" wx:if="{{parking.feeDesc||parking.feeStandard}}">
+      <text class="fee-lbl">收费标准</text>
+      <text class="fee-val">{{parking.feeDesc||parking.feeStandard}}</text>
+    </view>
+  </view>
+
+  <!-- 拼团滚动（仅月卡显示） -->
+  <view class="pin-bar card-glass" wx:if="{{pinList.length>0 && cardType!=='count'}}">
+    <view class="pin-label flex"><text class="pin-fire">🔥</text><text>正在拼团</text></view>
+    <swiper vertical autoplay circular interval="2500" class="pin-swiper">
+      <swiper-item wx:for="{{pinList}}" wx:key="id">
+        <view class="pin-item flex-between" bindtap="onJoinPin" data-item="{{item}}">
+          <view class="flex" style="align-items:center;flex:1;overflow:hidden">
+            <view class="pin-avatars flex">
+              <view class="pin-av" wx:for="{{item.avatars}}" wx:key="nick" wx:if="{{index<3}}" style="background:{{item.color||'#FF6B35'}}">{{item.nick.slice(0,1)}}</view>
+            </view>
+            <view class="pin-info">
+              <text class="pin-detail">{{item.joined}}/{{item.need}}人 · 还差{{item.remain}}人</text>
+              <text class="pin-date" wx:if="{{item.startDate}}">预计开始 {{item.startDate}}</text>
+            </view>
+          </view>
+          <view class="pin-join">马上拼 →</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 套餐 -->
+  <view class="section">
+    <view class="sec-head flex-between">
+      <text class="sec-title">套餐选择</text>
+      <text class="sec-sub">{{packages.length}}个套餐</text>
+    </view>
+    <package-card wx:for="{{packages}}" wx:key="_id" package="{{item}}" index="{{index}}" selected="{{selPkgIdx===index}}" bind:select="onSelectPackage" bind:buy="onBuyPackage"/>
+  </view>
+
+  <!-- 推荐搭配 -->
+  <view class="card-glass" wx:if="{{recommendPackages.length>0}}">
+    <view class="sec-head flex-between">
+      <view class="flex"><text class="sec-icon">💡</text><text class="sec-title">AI 推荐搭配</text></view>
+      <t-tag theme="danger" size="small">省30%起</t-tag>
+    </view>
+    <view class="rec-desc">根据您的常用路线智能推荐</view>
+    <view class="rec-list">
+      <view class="rec-item" wx:for="{{recommendPackages}}" wx:key="_id">
+        <view class="flex-between">
+          <text class="rec-name">{{item.name}}</text>
+          <text class="rec-price price-accent">¥{{filters.toFixed(item.price)}}<text class="rec-unit">/月</text></text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="safe-bottom bottom-spacer"></view>
+</view>
+
+<!-- 底部栏 -->
+<view class="bot-bar safe-bottom" wx:if="{{!loading}}">
+  <view class="bot-left">
+    <view class="bot-fav {{isFavorite?'on':''}}" bindtap="onToggleFavorite">
+      <text>{{isFavorite?'❤️':'🤍'}}</text><text class="bot-txt">收藏</text>
+    </view>
+  </view>
+  <view class="bot-right flex-1">
+    <block wx:if="{{cardType!=='count'&&packages.length>0}}">
+    <view class="bot-grp" bindtap="onGroupBuy3">
+      <text class="bot-grp-title">好友团 (3人团)</text>
+      <text class="bot-grp-price" wx:if="{{packages[selPkgIdx].groupPrice3}}">¥{{filters.toFixed(packages[selPkgIdx].groupPrice3)}}</text>
+    </view>
+    <view class="bot-grp" bindtap="onGroupBuy10">
+      <text class="bot-grp-title">企业团 (10人团)</text>
+      <text class="bot-grp-price" wx:if="{{packages[selPkgIdx].groupPrice10||packages[selPkgIdx].groupPrice15}}">¥{{filters.toFixed(packages[selPkgIdx].groupPrice10||packages[selPkgIdx].groupPrice15)}}</text>
+    </view>
+    </block>
+    <view class="bot-buy {{cardType==='count'?'bot-buy-full':''}}" bindtap="onDirectBuy">
+      <text class="bot-buy-label">{{cardType==='count'?'购买':'直接购买'}}</text>
+      <text class="bot-buy-price" wx:if="{{packages.length>0}}">¥{{filters.toFixed(packages[selPkgIdx].price||packages[0].price)}}</text>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{loading}}" class="loading-msg flex-center">加载中…</view>

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "t-tabs": "tdesign-miniprogram/tabs/tabs",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "t-empty": "tdesign-miniprogram/empty/empty"
+  },
+  "navigationBarTitleText": "我的订单",
+  "navigationBarBackgroundColor": "#1A1A2E",
+  "navigationBarTextStyle": "white"
+}

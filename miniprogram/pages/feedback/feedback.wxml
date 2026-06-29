@@ -1,0 +1,33 @@
+<!-- 留言建议有奖 -->
+<view class="page">
+  <view class="card-glass" style="padding:24rpx;margin:20rpx">
+    <text class="fs-28 fw-600" style="color:var(--primary);display:block;margin-bottom:12rpx">💡 留言建议有奖</text>
+    <text class="fs-22" style="color:var(--text-secondary);line-height:1.8">
+      欢迎您对粤停汇小程序提出宝贵意见！凡是留言被采纳的用户，将获得<text style="color:#F97316;font-weight:600">不限日期30元无门槛月卡代金券一张</text>。
+    </text>
+  </view>
+
+  <view class="card-glass" style="padding:24rpx;margin:20rpx">
+    <view class="form-item">
+      <text class="form-label">联系电话<text style="color:#EF4444">*</text></text>
+      <input class="form-input" placeholder="请输入您的联系电话" value="{{phone}}" bindinput="onPhoneInput" type="number" maxlength="11" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">留言内容<text style="color:#EF4444">*</text></text>
+      <textarea class="form-textarea" placeholder="请在此输入您的使用意见或改进建议..." value="{{content}}" bindinput="onContentInput" maxlength="500" auto-height />
+      <text class="form-count">{{content.length||0}}/500</text>
+    </view>
+  </view>
+
+  <view style="padding:20rpx;margin:20rpx">
+    <t-button theme="primary" size="large" block bind:tap="onSubmit" loading="{{submitting}}" disabled="{{!phone||!content}}">提交留言</t-button>
+  </view>
+
+  <view class="card-glass" wx:if="{{submitted}}" style="padding:32rpx;margin:20rpx;text-align:center">
+    <text style="font-size:48rpx;display:block;margin-bottom:16rpx">✅</text>
+    <text class="fs-28 fw-600" style="color:var(--primary);display:block;margin-bottom:8rpx">留言已收到</text>
+    <text class="fs-24" style="color:var(--text-secondary);line-height:1.8">
+      若信息被采纳，将得到<text style="color:#F97316;font-weight:600">《不限日期30元无门槛月卡代金券一张》</text>
+    </text>
+  </view>
+</view>

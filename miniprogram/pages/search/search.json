@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "t-search": "tdesign-miniprogram/search/search",
+    "t-empty": "tdesign-miniprogram/empty/empty"
+  },
+  "navigationBarTitleText": "搜索",
+  "navigationBarBackgroundColor": "#1A1A2E",
+  "navigationBarTextStyle": "white"
+}

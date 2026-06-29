@@ -1,0 +1,231 @@
+<!-- 车主认证页 - 多步骤流程 -->
+<view class="page">
+
+  <!-- 已有认证 -->
+  <view class="verify-card" wx:if="{{existingVerify&&existingVerify.verified}}">
+    <view class="verify-success-icon">✅</view>
+    <view class="verify-success-title">认证已完成</view>
+    <view class="verify-success-info">车牌号：{{existingVerify.plateNo}}</view>
+    <view class="verify-success-info">姓名：{{existingVerify.name}}</view>
+    <button class="btn-block btn-primary" bindtap="onGoHome">返回首页</button>
+  </view>
+
+  <block wx:elif="{{!loading}}">
+    <!-- 进度条 -->
+    <view class="steps-bar">
+      <view class="steps-progress" style="width:{{step/7*100}}%"></view>
+      <view class="steps-dots">
+        <view class="steps-dot {{index<=step?'active':''}} {{index<step?'done':''}}" wx:for="{{stepLabels}}" wx:key="index">
+          <text class="dot-text" wx:if="{{index===step||index<step}}">{{index<step?'✓':index+1}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- ====== 步骤 0: 填写姓名身份证 + 手机号验证 ====== -->
+    <view class="step-card" wx:if="{{step===0}}">
+      <view class="step-icon">🪪</view>
+      <view class="step-title">填写身份信息</view>
+      <view class="step-desc">请填写您的真实姓名、身份证号和手机号</view>
+      <view class="form-group">
+        <text class="form-label">姓名</text>
+        <input class="form-input" placeholder="请输入真实姓名" value="{{name}}" bindinput="onNameInput" maxlength="20"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">身份证号</text>
+        <input class="form-input" type="idcard" placeholder="请输入18位身份证号" value="{{idNo}}" bindinput="onIdNoInput" maxlength="18"/>
+      </view>
+      <view class="form-group">
+        <text class="form-label">联系电话</text>
+        <input class="form-input" type="number" placeholder="请输入手机号码" value="{{phone}}" bindinput="onPhoneInput" maxlength="11"/>
+      </view>
+
+      <!-- 短信验证 -->
+      <view class="sms-row" wx:if="{{phone.length===11}}">
+        <view class="sms-input-wrap">
+          <input class="form-input sms-input" type="number" placeholder="输入验证码" value="{{vcode}}" bindinput="onVcodeInput" maxlength="4" disabled="{{smsVerified}}"/>
+        </view>
+        <button class="sms-btn {{smsSent&&smsSeconds>0?'sms-btn-disabled':''}} {{smsVerified?'sms-btn-verified':''}}" bindtap="{{smsVerified?'':'onSendSms'}}" disabled="{{smsVerified||(smsSent&&smsSeconds>0)}}">
+          {{smsVerified?'已通过':(smsSent&&smsSeconds>0?smsSeconds+'s':'发送验证码')}}
+        </button>
+      </view>
+      <button class="btn-block btn-outline sms-verify-btn" wx:if="{{phone.length===11&&vcode.length===4&&!smsVerified}}" bindtap="onVerifySms">验证手机号</button>
+
+      <view class="privacy-tip">
+        <text>🔒 您的信息仅用于实名认证，加密传输</text>
+      </view>
+      <button class="btn-block btn-primary" bindtap="onNextToStep1">下一步</button>
+    </view>
+
+    <!-- ====== 步骤 1: 实名认证 ====== -->
+    <view class="step-card" wx:if="{{step===1}}">
+      <view class="step-icon">🔐</view>
+      <view class="step-title">实名认证</view>
+      <view class="step-desc">系统将验证您提交的身份信息</view>
+      <view class="info-card">
+        <view class="info-row"><text class="info-key">姓名：</text><text>{{name}}</text></view>
+        <view class="info-row"><text class="info-key">身份证：</text><text>{{idNo.slice(0,4)}}**********{{idNo.slice(-2)}}</text></view>
+      </view>
+      <button class="btn-block btn-primary" bindtap="onVerifyRealName" loading="{{submitting}}">
+        {{submitting?'验证中...':'立即认证'}}
+      </button>
+    </view>
+
+    <!-- ====== 步骤 2: 人脸活体检测 ====== -->
+    <view class="step-card" wx:if="{{step===2}}">
+      <view class="step-icon {{faceVerified?'done-icon':''}}">📸</view>
+      <view class="step-title">人脸识别</view>
+      <view class="step-desc">进行人脸活体检测，确保本人操作</view>
+      <view class="face-preview" wx:if="{{faceVerified}}">
+        <text class="face-check">✅ 人脸验证通过</text>
+      </view>
+      <block wx:else>
+        <view class="face-icon-area">
+          <text class="face-icon-big">👤</text>
+        </view>
+        <button class="btn-block btn-primary" bindtap="onFaceVerify">开始人脸识别</button>
+      </block>
+      <button class="btn-block btn-outline" bindtap="onFaceVerify" wx:if="{{faceVerified}}">重新识别</button>
+      <button class="btn-block btn-primary" bindtap="onUploadLicense" wx:if="{{faceVerified}}">下一步：上传行驶证</button>
+    </view>
+
+    <!-- ====== 步骤 3: 上传行驶证 ====== -->
+    <view class="step-card" wx:if="{{step===3}}">
+      <view class="step-icon">🚗</view>
+      <view class="step-title">上传行驶证</view>
+      <view class="step-desc">请拍摄清晰的行驶证主页</view>
+
+      <block wx:if="{{licenseImage}}">
+        <image class="license-preview" src="{{licenseImage}}" mode="widthFix"/>
+        <button class="btn-block btn-outline" bindtap="onRetake">重新拍摄</button>
+        <button class="btn-block btn-primary" wx:if="{{licenseImageBase64&&!ocrLoading}}" bindtap="onSubmitVerify">
+          下一步：系统校验
+        </button>
+      </block>
+      <block wx:else>
+        <view class="upload-area" bindtap="onUploadLicense">
+          <text class="upload-icon">📷</text>
+          <text class="upload-text">点击上传行驶证照片</text>
+          <text class="upload-hint">请确保护照清晰、无遮挡</text>
+        </view>
+      </block>
+      <view class="upload-tip" wx:if="{{uploading}}">上传中...</view>
+    </view>
+
+    <!-- ====== 步骤 4: OCR 识别 + 确认 ====== -->
+    <view class="step-card" wx:if="{{step===4}}">
+      <view class="step-icon">🔍</view>
+      <view class="step-title">行驶证识别</view>
+      <view class="step-desc">请核对识别结果，确认无误后提交</view>
+
+      <!-- 识别中 -->
+      <view class="ocr-loading" wx:if="{{ocrLoading}}">
+        <view class="ocr-spinner"></view>
+        <text class="ocr-status">AI 识别中，请稍候...</text>
+      </view>
+
+      <!-- 识别完成 → 展示结果让用户确认 -->
+      <block wx:if="{{ocrResult&&!ocrLoading}}">
+        <view class="ocr-result-card">
+          <view class="ocr-row"><text class="ocr-key">车牌号码</text><text class="ocr-val">{{ocrResult.plateNo||'未识别'}}</text></view>
+          <view class="ocr-row"><text class="ocr-key">所有人</text><text class="ocr-val">{{ocrResult.owner||'未识别'}}</text></view>
+          <view class="ocr-row"><text class="ocr-key">住址</text><text class="ocr-val">{{ocrResult.address||'未识别'}}</text></view>
+          <view class="ocr-row"><text class="ocr-key">车辆类型</text><text class="ocr-val">{{ocrResult.vehicleType||'未识别'}}</text></view>
+          <view class="ocr-row"><text class="ocr-key">品牌型号</text><text class="ocr-val">{{ocrResult.brandModel||'未识别'}}</text></view>
+          <view class="ocr-row"><text class="ocr-key">车辆识别代号</text><text class="ocr-val">{{ocrResult.vin||'未识别'}}</text></view>
+          <view class="ocr-row"><text class="ocr-key">发动机号码</text><text class="ocr-val">{{ocrResult.engineNo||'未识别'}}</text></view>
+          <view class="ocr-row"><text class="ocr-key">注册日期</text><text class="ocr-val">{{ocrResult.registerDate||'未识别'}}</text></view>
+          <view class="ocr-row"><text class="ocr-key">发证日期</text><text class="ocr-val">{{ocrResult.issueDate||'未识别'}}</text></view>
+        </view>
+
+        <view class="ocr-confirm-tip" wx:if="{{!ocrResult.plateNo}}">
+          ⚠️ 部分信息未识别，请重新拍摄或手动核对
+        </view>
+
+        <button class="btn-block btn-primary" bindtap="onOcrConfirm">
+          ✅ 信息无误，提交审核
+        </button>
+        <button class="btn-block btn-outline" bindtap="onRetake">📷 重新拍照</button>
+      </block>
+
+      <!-- 识别失败 → 直接提交（走人工审核） -->
+      <block wx:if="{{!ocrResult&&!ocrLoading}}">
+        <view class="ocr-fail-msg">
+          <text>⚠️ OCR未能识别，将直接提交人工审核</text>
+        </view>
+        <button class="btn-block btn-primary" bindtap="onSubmitVerify">提交人工审核</button>
+        <button class="btn-block btn-outline" bindtap="onRetake">📷 重新拍照</button>
+      </block>
+    </view>
+
+    <!-- ====== 步骤 5: 系统校验 ====== -->
+    <view class="step-card" wx:if="{{step===5}}">
+      <view class="step-icon">⚙️</view>
+      <view class="step-title">系统校验</view>
+      <view class="step-desc">正在验证信息一致性...</view>
+
+      <block wx:if="{{submitting}}">
+        <view class="ocr-loading">
+          <view class="ocr-spinner"></view>
+          <text>提交中...</text>
+        </view>
+      </block>
+
+      <block wx:if="{{checkResult}}">
+        <view class="check-item {{checkResult.nameMatch?'pass':'warn'}}">
+          <text class="check-icon">{{checkResult.nameMatch?'✅':'⚠️'}}</text>
+          <text>姓名一致性：{{checkResult.nameMatch?'通过':'待人工确认'}}</text>
+        </view>
+        <view class="check-item {{checkResult.ocrSuccess?'pass':'warn'}}">
+          <text class="check-icon">{{checkResult.ocrSuccess?'✅':'⚠️'}}</text>
+          <text>行驶证识别：{{checkResult.ocrSuccess?'成功':'待人工确认'}}</text>
+        </view>
+        <view class="check-item pass">
+          <text class="check-icon">✅</text>
+          <text>身份证格式：通过</text>
+        </view>
+        <text class="check-msg">{{verifyResult.message}}</text>
+      </block>
+
+      <button class="btn-block btn-primary" bindtap="onSubmitVerify" wx:if="{{!checkResult&&!submitting}}" loading="{{submitting}}">
+        提交审核
+      </button>
+    </view>
+
+    <!-- ====== 步骤 6: 提交人工审核 ====== -->
+    <view class="step-card" wx:if="{{step===6}}">
+      <view class="step-icon">📋</view>
+      <view class="step-title">提交人工审核</view>
+      <view class="step-desc">{{verifyResult.message}}</view>
+
+      <view class="audit-card">
+        <text class="audit-icon">⏳</text>
+        <text class="audit-title">等待审核中</text>
+        <text class="audit-desc">我们正在审核您的信息，通常1个工作日内完成</text>
+        <text class="audit-hint">审核通过后您可享受车主专属服务</text>
+      </view>
+
+      <button class="btn-block btn-primary" bindtap="onDone">完成</button>
+    </view>
+
+    <!-- ====== 步骤 7: 完成 ====== -->
+    <view class="step-card" wx:if="{{step===7}}">
+      <view class="step-icon done-icon">🎉</view>
+      <view class="step-title">认证完成！</view>
+      <view class="step-desc">您已通过车主认证，可享受全部服务</view>
+
+      <view class="done-benefits">
+        <view class="benefit-item">🅿️ 停车月卡比价</view>
+        <view class="benefit-item">⚡ 车主专属优惠</view>
+        <view class="benefit-item">🔐 车辆信息管理</view>
+      </view>
+
+      <button class="btn-block btn-primary" bindtap="onDone">开始使用</button>
+    </view>
+  </block>
+
+  <!-- 加载中 -->
+  <view class="flex-center" wx:if="{{loading}}" style="height:60vh">
+    <text class="fs-28" style="color:var(--text-muted)">加载中...</text>
+  </view>
+
+</view>

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "package-card": "/components/package-card/package-card"
+  },
+  "navigationStyle": "custom",
+  "backgroundColor": "#060710"
+}

@@ -1,0 +1,66 @@
+<view class="page">
+  <view class="top-bar">
+    <view class="tabs-wrap">
+      <t-tabs value="{{activeTab}}" bind:change="onTabChange">
+        <t-tab-panel label="全部" value="all" />
+        <t-tab-panel label="待支付" value="pending" />
+        <t-tab-panel label="已支付" value="paid" />
+        <t-tab-panel label="已完成" value="done" />
+      </t-tabs>
+    </view>
+  </view>
+
+  <!-- 编辑模式工具栏 -->
+  <view class="edit-toolbar" wx:if="{{editMode}}">
+    <view class="edit-toolbar-left">
+      <view class="edit-btn" bindtap="onSelectAll">
+        <view class="check-box {{allSelected?'checked':''}}">
+          <text wx:if="{{allSelected}}">✓</text>
+        </view>
+        <text>{{allSelected ? '取消全选' : '全选'}}</text>
+      </view>
+      <text class="edit-count">已选 {{selectedIds.length}} 项</text>
+    </view>
+    <view class="edit-toolbar-right">
+      <view class="edit-btn danger" bindtap="onBatchDelete">删除</view>
+      <view class="edit-btn" bindtap="onExitEditMode">完成</view>
+    </view>
+  </view>
+
+  <!-- 订单列表 -->
+  <block wx:if="{{orders.length > 0}}">
+    <view class="order-card card {{editMode?'edit-mode':''}}" wx:for="{{orders}}" wx:key="_id" bindtap="onTapOrder" bindlongpress="onLongPressOrder" data-id="{{item._id}}">
+      <!-- 选择框 -->
+      <view class="check-box {{selectedIds.indexOf(item._id)>-1?'checked':''}}" wx:if="{{editMode}}" catchtap="onTapOrder" data-id="{{item._id}}">
+        <text wx:if="{{selectedIds.indexOf(item._id)>-1}}">✓</text>
+      </view>
+
+      <view class="order-content">
+        <view class="order-header flex-between">
+          <text class="order-project text-ellipsis">{{item.projectName||item.parkingName}}</text>
+          <t-tag theme="{{item.statusTheme}}" size="small" variant="light">{{item.statusText}}</t-tag>
+        </view>
+        <view class="order-body">
+          <text class="order-package">{{item.packageName}}</text>
+          <text class="order-count">x{{item.quantity}}</text>
+        </view>
+        <view class="order-plate" wx:if="{{item.plateNo}}">
+          <text class="plate-tag">🚗 {{item.plateNo}}</text>
+        </view>
+        <view class="order-footer flex-between">
+          <view class="order-time">{{item.createTimeText}}</view>
+          <view class="order-price">
+            <text class="price-symbol">¥</text>
+            <text class="price-value price-md">{{item.finalPrice}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <t-empty wx:else icon="order" description="暂无订单" />
+
+  <view class="longpress-hint" wx:if="{{!editMode && orders.length > 0}}">
+    长按订单可进入多选编辑模式
+  </view>
+</view>

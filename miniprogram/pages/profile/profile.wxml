@@ -1,0 +1,321 @@
+<view class="page">
+  <!-- 车辆列表 -->
+  <view class="section-header">
+    <text class="section-title">🚗 我的车辆</text>
+    <text class="section-count" wx:if="{{vehicles.length}}">{{vehicles.length}}辆</text>
+  </view>
+
+  <block wx:if="{{vehicles.length}}">
+    <view class="vehicle-card card-glass {{item.isDefault ? 'card-default' : ''}}" wx:for="{{vehicles}}" wx:key="id">
+      <view class="default-badge" wx:if="{{item.isDefault}}">默认</view>
+      <view class="v-header">
+        <view class="plate-box"><text class="plate-text">{{item.plateNo}}</text></view>
+        <view class="v-actions">
+          <view class="v-action-btn" bindtap="onEditVehicle" data-id="{{item.id}}"><text class="action-text">✎</text></view>
+          <view class="v-action-btn" bindtap="onDeleteVehicle" data-id="{{item.id}}"><text class="action-text del">✕</text></view>
+        </view>
+      </view>
+      <view class="v-info-row">
+        <view class="v-info-item"><text class="v-info-label">品牌车型</text><text class="v-info-value">{{item.brandModel || '未填写'}}</text></view>
+        <view class="v-info-item"><text class="v-info-label">颜色</text><view class="v-color-dot" style="background:{{item.color}}"></view><text class="v-info-value" style="margin-left:8rpx">{{item.colorName || item.color || '未填写'}}</text></view>
+        <view class="v-info-item"><text class="v-info-label">类型</text><text class="v-info-value">{{item.vehicleType || '未选择'}}</text></view>
+      </view>
+      <!-- 认证状态 -->
+      <view class="v-cert-row">
+        <view class="cert-status-badge {{item.certified?'cert-ok':'cert-pending'}}">
+          <text>{{item.certified?'✅ 已认证':'⏳ 未认证'}}</text>
+        </view>
+        <view class="cert-btn" catchtap="onStartCert" data-id="{{item.id}}" wx:if="{{!item.certified}}">去认证 →</view>
+        <text class="cert-info-detail" wx:if="{{item.certified&&item.ownerName}}">车主: {{item.ownerName}}</text>
+      </view>
+      <view class="v-footer" wx:if="{{!item.isDefault}}"><view class="set-default-btn" bindtap="onSetDefault" data-id="{{item.id}}">设为默认车辆</view></view>
+    </view>
+    <view class="vehicle-divider" wx:if="{{index < vehicles.length - 1}}"></view>
+  </block>
+
+  <view class="empty-state card-glass" wx:else>
+    <view class="empty-icon">🚘</view><text class="empty-title">还没有添加车辆</text><text class="empty-desc">添加车牌后即可快速下单</text>
+  </view>
+
+  <view class="add-btn" bindtap="onAddVehicle"><text class="add-icon">+</text><text class="add-text">添加车辆</text></view>
+
+  <!-- ========================================== -->
+  <!-- 车牌输入弹窗（省份选择 + 字母数字键盘） -->
+  <!-- ========================================== -->
+  <view class="modal-mask" wx:if="{{showPlateModal}}" bindtap="onClosePlateModal"></view>
+  <view class="plate-modal" wx:if="{{showPlateModal}}">
+    <view class="plate-modal-hd">
+      <view class="plate-modal-close" bindtap="onClosePlateModal">取消</view>
+      <text class="plate-modal-title">请输入车牌</text>
+      <view style="width:80rpx"></view>
+    </view>
+
+    <!-- 步骤0: 选择省份 -->
+    <view class="plate-province-panel" wx:if="{{plateStep===0}}">
+      <text class="plate-step-hint">请选择所在省份</text>
+      <view class="province-grid plate-province-grid">
+        <view class="province-item {{tempProvince===item?'active':''}}" wx:for="{{provinces}}" wx:key="*this" bindtap="onSelectTempProvince" data-province="{{item}}">{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 步骤1: 输入字母数字（独立格子） -->
+    <view class="plate-box-panel" wx:if="{{plateStep===1}}">
+      <!-- 车牌格子显示行：[粤] [B] · [1] [2] [3] [4] [5] [6/新能源] -->
+      <view class="plate-box-row">
+        <!-- 前面2格：省份+字母 -->
+        <view class="plate-cell plate-cell-blue">{{tempProvince}}</view>
+        <view class="plate-cell {{tempPlateChars.length>=1?'filled':''}}" data-idx="0" catchtap="onPlateCellTap">{{tempPlateChars[0]||''}}</view>
+        <text class="plate-dot">·</text>
+        <!-- 后面6格 -->
+        <view class="plate-cell {{tempPlateChars.length>=2?'filled':''}}" data-idx="1" catchtap="onPlateCellTap">{{tempPlateChars[1]||''}}</view>
+        <view class="plate-cell {{tempPlateChars.length>=3?'filled':''}}" data-idx="2" catchtap="onPlateCellTap">{{tempPlateChars[2]||''}}</view>
+        <view class="plate-cell {{tempPlateChars.length>=4?'filled':''}}" data-idx="3" catchtap="onPlateCellTap">{{tempPlateChars[3]||''}}</view>
+        <view class="plate-cell {{tempPlateChars.length>=5?'filled':''}}" data-idx="4" catchtap="onPlateCellTap">{{tempPlateChars[4]||''}}</view>
+        <view class="plate-cell {{tempPlateChars.length>=6?'filled':''}}" data-idx="5" catchtap="onPlateCellTap">{{tempPlateChars[5]||''}}</view>
+        <view class="plate-cell {{tempPlateChars.length>=7?'filled':''}}" data-idx="6" catchtap="onPlateCellTap">
+          <text wx:if="{{tempPlateChars.length<7}}" class="plate-ne-text">新能源</text>
+          <text wx:else>{{tempPlateChars[6]}}</text>
+        </view>
+      </view>
+
+      <!-- 键盘 -->
+      <view class="plate-keys">
+        <view class="pk-row" wx:for="{{PLATE_KEYS}}" wx:key="*this">
+          <view class="pk-key" wx:for="{{item}}" wx:for-item="char" wx:key="*this" catchtap="onPlateTap" data-char="{{char}}">{{char}}</view>
+        </view>
+        <view class="pk-row pk-last-row">
+          <view class="pk-key pk-del" catchtap="onPlateTap" data-char="DEL">⌫</view>
+        </view>
+      </view>
+      <view class="plate-confirm-btn {{tempPlateChars.length>=6?'active':''}}" bindtap="onPlateConfirm">
+        <text>确定 ({{tempProvince}}{{tempPlateChars.join('')}})</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ========================================== -->
+  <!-- 身份选择弹窗 -->
+  <!-- ========================================== -->
+  <view class="modal-mask" wx:if="{{showIdentityModal}}" bindtap="onCloseIdentityModal"></view>
+  <view class="identity-modal" wx:if="{{showIdentityModal}}">
+    <view class="identity-hd">
+      <text class="identity-plate">🚙 {{certPlateNo}}</text>
+      <text class="identity-title">请选择您的身份</text>
+    </view>
+    <view class="identity-body">
+      <view class="identity-option identity-owner" bindtap="onSelectOwner">
+        <text class="identity-ico">🔑</text>
+        <view class="identity-info">
+          <text class="identity-opt-title">我是车主</text>
+          <text class="identity-opt-desc">完成车主认证，享30元新用户注册优惠券</text>
+        </view>
+      </view>
+      <view class="identity-option identity-user" bindtap="onSelectUser">
+        <text class="identity-ico">👤</text>
+        <view class="identity-info">
+          <text class="identity-opt-title">我是使用者</text>
+          <text class="identity-opt-desc">仅添加车辆信息，不进行认证</text>
+        </view>
+      </view>
+    </view>
+    <view class="identity-ft">
+      <view class="identity-cancel" bindtap="onCancelIdentity">取消</view>
+    </view>
+  </view>
+
+  <!-- ========================================== -->
+  <!-- 免责声明弹窗（保留，不再使用） -->
+  <!-- ========================================== -->
+  <view class="modal-mask" wx:if="{{showDisclaimer}}" bindtap="onCloseDisclaimer"></view>
+  <view class="disclaimer-modal" wx:if="{{showDisclaimer}}">
+    <view class="disclaimer-hd">
+      <text class="disclaimer-icon">⚠️</text>
+      <text class="disclaimer-title">免责声明</text>
+    </view>
+    <view class="disclaimer-body">
+      <text class="disclaimer-text">尊敬的用户：</text>
+      <text class="disclaimer-text">1. 您所添加的车牌信息将用于停车月卡/次卡购买及车辆认证。</text>
+      <text class="disclaimer-text">2. 请确保您是该车辆的合法车主或已获得车主授权。</text>
+      <text class="disclaimer-text">3. 虚假认证将承担相应法律责任。</text>
+      <text class="disclaimer-text">4. 平台将对您的个人信息严格保密。</text>
+    </view>
+    <view class="disclaimer-ft">
+      <view class="disclaimer-btn" bindtap="onAcceptDisclaimer">✓ 我是车主</view>
+      <text class="disclaimer-cancel" bindtap="onCloseDisclaimer">取消</text>
+    </view>
+  </view>
+
+  <!-- ========================================== -->
+  <!-- 认证要求弹窗 -->
+  <!-- ========================================== -->
+  <view class="modal-mask" wx:if="{{showCertModal}}" bindtap="onCloseCertModal"></view>
+  <view class="cert-modal" wx:if="{{showCertModal}}">
+    <view class="cert-modal-hd">
+      <text class="cert-modal-title">🚗 车辆认证</text>
+      <view class="cert-modal-close" bindtap="onCloseCertModal">✕</view>
+    </view>
+    <view class="cert-modal-body">
+      <view class="cert-step-list">
+        <view class="cert-step">
+          <view class="cert-step-num">1</view>
+          <text class="cert-step-text">准备本人身份证原件</text>
+        </view>
+        <view class="cert-step">
+          <view class="cert-step-num">2</view>
+          <text class="cert-step-text">准备车辆行驶证原件</text>
+        </view>
+        <view class="cert-step">
+          <view class="cert-step-num">3</view>
+          <text class="cert-step-text">确保是车辆合法所有人</text>
+        </view>
+      </view>
+      <view class="cert-agree">
+        <view class="cert-checkbox {{agreeTerms?'on':''}}" bindtap="onToggleAgree">
+          <text wx:if="{{agreeTerms}}">✓</text>
+        </view>
+        <text class="cert-agree-text">我已阅读并同意 <text class="cert-link">《服务协议》</text>和<text class="cert-link">《隐私协议》</text></text>
+      </view>
+    </view>
+    <view class="cert-modal-ft">
+      <view class="cert-go-btn {{agreeTerms?'active':''}}" bindtap="onGoCert">个人车辆认证</view>
+    </view>
+  </view>
+
+  <!-- ========================================== -->
+  <!-- 认证表单弹窗 -->
+  <!-- ========================================== -->
+  <view class="modal-mask" wx:if="{{showCertForm}}" bindtap="onCloseCertForm"></view>
+  <view class="cert-form-modal" wx:if="{{showCertForm}}">
+    <view class="cert-form-hd">
+      <text class="cert-form-title">📋 个人车辆认证</text>
+      <view class="cert-form-close" bindtap="onCloseCertForm">✕</view>
+    </view>
+    <scroll-view class="cert-form-body" scroll-y>
+      <view class="form-item">
+        <text class="form-label">姓名<text class="required">*</text></text>
+        <input class="form-input" placeholder="请输入身份证姓名" value="{{certForm.ownerName}}" bindinput="onCertFormInput" data-field="ownerName"/>
+      </view>
+      <view class="form-item">
+        <text class="form-label">身份证号<text class="required">*</text></text>
+        <input class="form-input" type="idcard" placeholder="请输入18位身份证号" value="{{certForm.idNumber}}" bindinput="onCertFormInput" data-field="idNumber" maxlength="18"/>
+      </view>
+      <view class="form-item">
+        <text class="form-label">行驶证<text class="required">*</text></text>
+        <view class="dl-upload" bindtap="onTakeDrivingLicense">
+          <image class="dl-image" wx:if="{{certForm.drivingLicenseUrl}}" src="{{certForm.drivingLicenseUrl}}" mode="aspectFit"></image>
+          <view class="dl-upload-placeholder" wx:else>
+            <text class="dl-upload-icon">📷</text>
+            <text class="dl-upload-text">去拍摄</text>
+          </view>
+        </view>
+      </view>
+      <view class="form-item" wx:if="{{certForm.vin}}">
+        <text class="form-label">车辆识别代号 (VIN)</text>
+        <view class="form-value-box"><text class="form-readonly-value">{{certForm.vin}}</text></view>
+      </view>
+      <view class="form-item" wx:if="{{certForm.engineNo}}">
+        <text class="form-label">发动机号码</text>
+        <view class="form-value-box"><text class="form-readonly-value">{{certForm.engineNo}}</text></view>
+      </view>
+    </scroll-view>
+    <view class="cert-form-ft">
+      <view class="cert-submit-btn" bindtap="onSubmitCert">提交认证</view>
+    </view>
+  </view>
+
+  <!-- ========== 编辑弹窗（原有，保留）========== -->
+  <view class="modal-mask" wx:if="{{showModal}}" bindtap="onCloseModal"></view>
+  <view class="modal-card" wx:if="{{showModal}}">
+    <view class="modal-header">
+      <text class="modal-title">{{editingId ? '编辑车辆' : '添加车辆'}}</text>
+      <view class="modal-close" bindtap="onCloseModal">✕</view>
+    </view>
+    <scroll-view class="modal-body" scroll-y enhanced show-scrollbar="{{false}}">
+      <view class="form-item form-plate-row">
+        <text class="form-label">车牌号<text class="required">*</text></text>
+        <view class="plate-input-group">
+          <view class="plate-province" bindtap="onPickProvince"><text class="province-text">{{editForm.province || '粤'}}</text><text class="province-arrow">▾</text></view>
+          <input class="plate-letter-input" type="text" placeholder="B" value="{{editForm.plateLetter}}" bindinput="onFormInput" data-field="plateLetter" maxlength="1"/>
+          <input class="plate-num-input" type="text" placeholder="12345" value="{{editForm.plateNum}}" bindinput="onFormInput" data-field="plateNum" maxlength="6"/>
+        </view>
+      </view>
+      <view class="form-item" bindtap="onPickBrand">
+        <text class="form-label">品牌车型</text>
+        <view class="picker-right"><text class="{{editForm.brandModel ? 'picker-value' : 'picker-placeholder'}}">{{editForm.brandModel || '点击选择品牌'}}</text><text class="picker-arrow">›</text></view>
+      </view>
+      <view class="form-item form-color-row">
+        <text class="form-label">车辆颜色</text>
+        <view class="color-palette">
+          <block wx:for="{{colorOptions}}" wx:key="value">
+            <view class="color-chip {{editForm.color===item.value?'active':''}}" style="background:{{item.value}}" bindtap="onPickColor" data-color="{{item.value}}" data-name="{{item.name}}"><text class="color-check" wx:if="{{editForm.color===item.value}}">✓</text></view>
+          </block>
+          <view class="color-chip color-chip-other {{showCustomColor?'active':''}}" bindtap="onPickColor" data-color="__other__" data-name="其他"><text class="color-other-text">其他</text></view>
+        </view>
+      </view>
+      <view class="form-item" wx:if="{{showCustomColor}}">
+        <text class="form-label">自定义颜色</text>
+        <input class="form-input" placeholder="输入颜色名称" value="{{editForm.customColor}}" bindinput="onCustomColorInput"/>
+        <view class="confirm-tiny" bindtap="onConfirmCustomColor">确定</view>
+      </view>
+      <view class="form-item"><text class="form-label">车辆类型</text>
+        <view class="type-selector">
+          <view class="type-chip {{editForm.vehicleType==='轿车'?'active':''}}" bindtap="onSelectType" data-type="轿车">轿车</view>
+          <view class="type-chip {{editForm.vehicleType==='SUV'?'active':''}}" bindtap="onSelectType" data-type="SUV">SUV</view>
+          <view class="type-chip {{editForm.vehicleType==='MPV'?'active':''}}" bindtap="onSelectType" data-type="MPV">MPV</view>
+          <view class="type-chip {{editForm.vehicleType==='面包车'?'active':''}}" bindtap="onSelectType" data-type="面包车">面包车</view>
+          <view class="type-chip {{editForm.vehicleType==='其他'?'active':''}}" bindtap="onSelectType" data-type="其他">其他</view>
+        </view>
+      </view>
+      <view class="form-item form-switch"><text class="form-label">设为默认车辆</text><switch color="#F97316" checked="{{editForm.isDefault}}" bindchange="onSwitchDefault"/></view>
+    </scroll-view>
+    <view class="modal-footer"><view class="btn-cancel" bindtap="onCloseModal">取消</view><view class="btn-save" bindtap="onSaveVehicle">保存</view></view>
+  </view>
+
+  <!-- ========== 省简称选择弹窗（原有） ========== -->
+  <view class="modal-mask" wx:if="{{showProvincePicker}}" bindtap="onCloseProvincePicker"></view>
+  <view class="picker-panel" wx:if="{{showProvincePicker}}">
+    <view class="picker-panel-header"><text class="picker-panel-title">选择省份</text><view class="picker-panel-close" bindtap="onCloseProvincePicker">✕</view></view>
+    <view class="province-grid">
+      <view class="province-item {{editForm.province===item?'active':''}}" wx:for="{{provinces}}" wx:key="*this" bindtap="onSelectProvince" data-province="{{item}}"><text>{{item}}</text></view>
+    </view>
+  </view>
+
+  <!-- ========== A-Z 品牌选择弹窗（原有） ========== -->
+  <view class="modal-mask" wx:if="{{showBrandPicker}}" bindtap="onCloseBrandPicker"></view>
+  <view class="brand-fullscreen" wx:if="{{showBrandPicker}}">
+    <view class="brand-header"><view class="brand-header-close" bindtap="onCloseBrandPicker">取消</view><text class="brand-header-title">选择品牌</text><view style="width:80rpx"></view></view>
+    <view class="brand-search" wx:if="{{showCustomBrand}}"><input class="brand-custom-input" placeholder="输入品牌名称" value="{{editForm.customBrand}}" bindinput="onCustomBrandInput" focus="{{true}}"/><view class="brand-custom-confirm" bindtap="onConfirmCustomBrand">确认</view></view>
+    <view class="brand-body">
+      <scroll-view scroll-y class="brand-scroll" enhanced show-scrollbar="{{false}}">
+        <block wx:for="{{brandGroups}}" wx:key="letter">
+          <view class="brand-section" id="brand-{{item.letter}}"><view class="brand-letter">{{item.letter}}</view>
+            <view class="brand-row"><view class="brand-tag {{editForm.brandModel===brand?'active':''}}" wx:for="{{item.brands}}" wx:for-item="brand" wx:key="*this" bindtap="onSelectBrand" data-brand="{{brand}}">{{brand}}</view></view>
+          </view>
+        </block>
+        <view class="brand-section"><view class="brand-letter">#</view><view class="brand-row"><view class="brand-tag {{showCustomBrand?'active':''}}" bindtap="onSelectBrand" data-brand="__other__">其他品牌</view></view></view>
+        <view style="height:40rpx"></view>
+      </scroll-view>
+      <view class="brand-index">
+        <view class="brand-idx-item" wx:for="{{brandGroups}}" wx:key="letter" bindtap="onBrandLetterTap" data-id="{{item.letter}}">{{item.letter}}</view>
+        <view class="brand-idx-item" bindtap="onBrandLetterTap" data-id="#">#</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ========== 常用地址（原有） ========== -->
+  <view class="section-header address-header" bindtap="onToggleAddress"><text class="section-title">📍 常用地址（选填）</text><text class="toggle-arrow {{showAddress?'open':''}}">›</text></view>
+  <view class="address-card card-glass" wx:if="{{showAddress}}">
+    <view class="addr-presets">
+      <view class="addr-preset-item {{currentAddrType==='company'?'active':''}}" bindtap="onSwitchAddrType" data-type="company"><text class="preset-icon">🏢</text><text class="preset-label">公司</text></view>
+      <view class="addr-preset-item {{currentAddrType==='home'?'active':''}}" bindtap="onSwitchAddrType" data-type="home"><text class="preset-icon">🏠</text><text class="preset-label">家</text></view>
+      <view class="addr-preset-item {{currentAddrType==='other'?'active':''}}" bindtap="onSwitchAddrType" data-type="other"><text class="preset-icon">📍</text><text class="preset-label">其他</text></view>
+    </view>
+    <view class="form-item"><text class="form-label">{{currentAddrType==='company'?'公司地址':currentAddrType==='home'?'居住地址':'自定义地址'}}</text><input class="form-input" placeholder="输入详细地址" value="{{currentAddress}}" bindinput="onCurrentAddrInput"/></view>
+    <view wx:if="{{currentAddrType==='other'}}">
+      <view class="other-addr-item" wx:for="{{otherAddresses}}" wx:key="id"><text class="other-addr-index">{{index+1}}.</text><input class="form-input other-addr-input" placeholder="输入地址" value="{{item.value}}" bindinput="onOtherAddrInput" data-id="{{item.id}}"/><view class="other-addr-del" bindtap="onDeleteOtherAddr" data-id="{{item.id}}">✕</view></view>
+      <view class="add-other-addr" bindtap="onAddOtherAddr">+ 添加其他地址</view>
+    </view>
+    <view class="mini-save-btn" bindtap="onSaveAddress">保存地址</view>
+  </view>
+  <view class="safe-bottom" style="height:80rpx"></view>
+</view>

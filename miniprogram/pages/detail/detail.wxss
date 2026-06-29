@@ -1,0 +1,73 @@
+/* 详情页 v4 - 蓝字橙字白底风格 */
+.page{background:var(--bg-deep);min-height:100vh}
+
+/* 返回栏 */
+.back-bar{display:flex;align-items:center;padding:16rpx 24rpx;gap:16rpx}
+.back-btn{width:64rpx;height:64rpx;display:flex;align-items:center;justify-content:center;background:var(--bg-card);border-radius:50%;border:1rpx solid var(--border-subtle);font-size:28rpx;color:var(--text-primary);box-shadow:var(--shadow-sm)}
+.back-title{flex:1;font-size:30rpx;font-weight:700;color:var(--primary)}
+.back-actions{display:flex;gap:12rpx}
+.back-icon-btn{width:64rpx;height:64rpx;display:flex;align-items:center;justify-content:center;background:var(--bg-card);border-radius:50%;border:1rpx solid var(--border-subtle);font-size:24rpx;box-shadow:var(--shadow-sm)}
+
+/* 图片 */
+.img-swiper{width:100%;height:420rpx}.img-swiper image{width:100%;height:100%}
+
+/* 微信地图 */
+.detail-map{width:100%;height:380rpx}
+
+/* 信息 */
+.info{padding:24rpx}
+.info-name{font-size:32rpx;font-weight:800;color:var(--primary);flex:1;margin-right:16rpx}
+.info-rating{font-size:22rpx;color:var(--gold);flex-shrink:0}
+.info-addr{padding:16rpx 0;align-items:center;gap:8rpx;font-size:20rpx}
+.addr-t{flex:1;font-size:24rpx;color:var(--text-secondary);margin:0 6rpx}
+.addr-nav{font-size:22rpx;color:var(--primary);font-weight:600;flex-shrink:0}
+
+.info-fee{padding:16rpx;background:rgba(249,115,22,.06);border-radius:var(--radius-sm);display:flex;margin-bottom:16rpx;gap:12rpx}
+.fee-lbl{font-size:20rpx;color:var(--accent);flex-shrink:0;font-weight:600}
+.fee-val{font-size:22rpx;color:#92400E;line-height:1.5}
+
+.info-tags{gap:8rpx}.info-tag{font-size:20rpx;color:var(--text-secondary);background:#F1F5F9;padding:4rpx 12rpx;border-radius:4rpx}
+
+/* 拼团滚动 */
+.pin-bar{padding:16rpx 24rpx;display:flex;align-items:center;gap:16rpx}
+.pin-label{flex-shrink:0;font-size:22rpx;color:var(--accent);font-weight:600;gap:6rpx}
+.pin-fire{font-size:24rpx}
+.pin-swiper{flex:1;height:56rpx}
+.pin-item{height:56rpx}
+.pin-avatar{width:40rpx;height:40rpx;border-radius:50%;background:#E2E8F0;display:flex;align-items:center;justify-content:center;font-size:22rpx;margin-right:10rpx}
+.pin-avatars{display:flex;margin-right:8rpx}
+.pin-av{width:36rpx;height:36rpx;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18rpx;margin-right:-8rpx;border:2rpx solid var(--bg-card)}
+.pin-detail{font-size:20rpx;color:var(--text-secondary)}
+.pin-date{font-size:18rpx;color:var(--text-muted);display:block;margin-top:2rpx}
+
+/* 套餐区 */
+.section{padding:24rpx 0}
+.sec-head{padding:0 28rpx 16rpx}
+.sec-icon{margin-right:8rpx}
+.sec-title{font-size:28rpx;font-weight:700;color:var(--text-primary)}
+.sec-sub{font-size:22rpx;color:var(--text-muted)}
+
+/* 推荐 */
+.rec-desc{font-size:22rpx;color:var(--text-secondary);padding:0 28rpx 16rpx}
+.rec-list{padding:0 28rpx 8rpx}
+.rec-item{padding:14rpx 0;border-bottom:1rpx solid var(--border-subtle)}
+.rec-name{font-size:24rpx;color:var(--text-secondary)}
+.rec-price{font-size:28rpx;font-weight:800;color:var(--accent)}
+.rec-unit{font-size:20rpx;color:var(--text-muted);font-weight:400}
+
+/* 底部栏 */
+.bot-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.95);display:flex;align-items:stretch;padding:12rpx 20rpx;border-top:1rpx solid var(--border-subtle);z-index:100;backdrop-filter:blur(20px);gap:10rpx}
+.bot-left{display:flex;align-items:center;gap:4rpx;flex-shrink:0}
+.bot-right{display:flex;flex:1;gap:8rpx;align-items:stretch}
+.bot-fav{display:flex;flex-direction:column;align-items:center;width:72rpx;font-size:22rpx;gap:2rpx}
+.bot-txt{font-size:18rpx;color:var(--text-muted)}
+.bot-fav.on .bot-txt{color:var(--accent)}
+.bot-grp{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rpx 6rpx;border:1rpx solid var(--border-subtle);border-radius:12rpx;background:#F8FAFC}
+.bot-grp-title{font-size:20rpx;color:var(--text-secondary)}
+.bot-grp-price{font-size:26rpx;font-weight:800;color:var(--primary);margin-top:2rpx}
+.bot-buy{flex:1.5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rpx 12rpx;background:linear-gradient(135deg,#F97316,#FB923C);color:#fff;border-radius:12rpx;box-shadow:0 6rpx 20rpx rgba(249,115,22,.25)}
+.bot-buy-label{font-size:20rpx;font-weight:600}
+.bot-buy-price{font-size:28rpx;font-weight:800;margin-top:2rpx}
+.bot-buy-full{flex:1}
+
+.loading-msg{height:100vh;color:var(--text-secondary);font-size:28rpx}

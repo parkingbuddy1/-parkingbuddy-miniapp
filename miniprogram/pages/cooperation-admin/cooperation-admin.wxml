@@ -1,0 +1,41 @@
+<!-- 商务合作管理 -->
+<view class="page">
+  <block wx:if="{{loading}}">
+    <view class="loading-wrap"><t-loading theme="circular" size="40rpx" text="加载中..." /></view>
+  </block>
+
+  <block wx:elif="{{list.length===0}}">
+    <view class="empty-wrap">
+      <text class="empty-emoji">📋</text>
+      <text class="empty-title">暂无合作留言</text>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="list">
+      <view
+        class="coop-item {{item.viewed?'viewed':''}}"
+        wx:for="{{list}}" wx:key="_id"
+      >
+        <view class="coop-meta">
+          <text class="coop-label">📱 {{item.phone}}</text>
+          <text class="coop-label">💬 {{item.wechat}}</text>
+          <text class="coop-time">{{item.createTime}}</text>
+        </view>
+        <view class="coop-content">{{item.content}}</view>
+        <view class="coop-footer">
+          <text class="coop-id">留言者ID: {{item.openid}}</text>
+          <view
+            wx:if="{{!item.viewed}}"
+            class="view-btn"
+            data-id="{{item._id}}"
+            bindtap="onView"
+          >标记已查看</view>
+          <text wx:else class="viewed-tag">✓ 已查看</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="safe-area"></view>
+</view>

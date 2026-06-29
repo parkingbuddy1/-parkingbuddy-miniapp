@@ -1,0 +1,74 @@
+<!-- AI 智能问答页面 - 微信聊天风格 -->
+<view class="page">
+  <!-- 顶部栏 -->
+  <view class="topbar" style="padding-top:{{statusBarHeight+12}}rpx">
+    <view class="tb-back" bindtap="onBack">← 返回</view>
+    <view class="tb-center">
+      <text class="tb-title">AI 停车助手</text>
+      <text class="tb-sub">粤停汇智能问答</text>
+    </view>
+    <view class="tb-status">
+      <text>🟢 在线</text>
+    </view>
+  </view>
+
+  <!-- 消息列表 -->
+  <scroll-view class="msg-list" scroll-y scroll-into-view="{{scrollToView}}" scroll-with-animation>
+    <!-- 空状态引导 -->
+    <view class="welcome-card" wx:if="{{messages.length===0}}">
+      <text class="wc-icon">🤖</text>
+      <text class="wc-title">我是粤停汇AI助手</text>
+      <text class="wc-desc">可以问我任何停车相关问题</text>
+      <view class="wc-examples">
+        <text class="wc-label">试试这些：</text>
+        <view class="wc-chip" bindtap="onQuickAsk" data-q="天河区最便宜的月卡停车场">🔍 天河区最便宜的月卡停车场</view>
+        <view class="wc-chip" bindtap="onQuickAsk" data-q="附近哪里有充电停车优惠">⚡ 附近哪里有充电停车优惠</view>
+        <view class="wc-chip" bindtap="onQuickAsk" data-q="月卡和次卡哪个更划算">💰 月卡和次卡哪个更划算</view>
+        <view class="wc-chip" bindtap="onQuickAsk" data-q="番禺区推荐几个停车场">📍 番禺区推荐几个停车场</view>
+      </view>
+    </view>
+
+    <!-- 消息项 -->
+    <view class="msg-item {{item.role}}" wx:for="{{messages}}" wx:key="time" id="msg-{{item.time}}">
+      <!-- 助手头像 -->
+      <view class="msg-avatar" wx:if="{{item.role==='assistant'}}">
+        <text>🤖</text>
+      </view>
+      <!-- 消息气泡 -->
+      <view class="msg-bubble {{item.role}}">
+        <text class="msg-text">{{item.content}}</text>
+        <text class="msg-source" wx:if="{{item.source==='local'}}">💡 本地智能回复</text>
+      </view>
+      <!-- 用户头像 -->
+      <view class="msg-avatar" wx:if="{{item.role==='user'}}">
+        <text>👤</text>
+      </view>
+    </view>
+
+    <!-- AI思考中 -->
+    <view class="msg-item assistant" wx:if="{{isThinking}}">
+      <view class="msg-avatar"><text>🤖</text></view>
+      <view class="msg-bubble assistant thinking">
+        <view class="dot-pulse">
+          <view class="dot"></view><view class="dot"></view><view class="dot"></view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部输入栏 -->
+  <view class="input-bar">
+    <view class="ib-voice {{isRecording?'recording':''}}" bindtouchstart="onVoiceStart" bindtouchend="onVoiceEnd">
+      <text>{{isRecording?'📢':'🎙️'}}</text>
+    </view>
+    <input class="ib-input" value="{{inputValue}}" placeholder="输入停车问题..."
+      bindinput="onInput" bindconfirm="onSend" confirm-type="send" adjust-position="{{true}}"
+      disabled="{{isThinking}}" maxlength="500"/>
+    <view class="ib-send {{inputValue?'active':''}}" bindtap="onSend" wx:if="{{inputValue}}">
+      <text>发送</text>
+    </view>
+    <view class="ib-quick" bindtap="onQuickAsk" data-q="推荐附近停车场" wx:if="{{!inputValue&&!isRecording}}">
+      <text>快捷</text>
+    </view>
+  </view>
+</view>

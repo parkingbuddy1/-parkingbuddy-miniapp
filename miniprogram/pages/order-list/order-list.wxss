@@ -1,0 +1,38 @@
+/* 订单列表 v3 - 蓝字橙字白底风格 */
+.page { min-height: 100vh; background: var(--bg-deep); padding-bottom: 40rpx; }
+.top-bar { position: sticky; top: 0; z-index: 9; background: var(--bg-deep); }
+.tabs-wrap { background: var(--bg-card); }
+
+/* ====== 编辑工具栏 ====== */
+.edit-toolbar { position: sticky; top: 96rpx; z-index: 8; background: #FFF7ED; border-bottom: 1rpx solid rgba(249,115,22,0.2); display: flex; align-items: center; justify-content: space-between; padding: 16rpx 24rpx; }
+.edit-toolbar-left { display: flex; align-items: center; gap: 16rpx; }
+.edit-toolbar-right { display: flex; align-items: center; gap: 20rpx; }
+.edit-btn { display: flex; align-items: center; gap: 8rpx; font-size: 26rpx; color: var(--text-secondary); padding: 8rpx 12rpx; border-radius: 8rpx; }
+.edit-btn.danger { color: #EF4444; font-weight: 700; }
+.edit-count { font-size: 24rpx; color: var(--accent); }
+
+/* 选择框 */
+.check-box { width: 40rpx; height: 40rpx; border-radius: 50%; border: 2rpx solid #CBD5E1; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; }
+.check-box.checked { background: var(--accent); border-color: var(--accent); color: #fff; font-size: 22rpx; font-weight: 700; }
+
+/* ====== 订单卡片 ====== */
+.order-card { padding: 24rpx; display: flex; align-items: flex-start; gap: 20rpx; }
+.order-card.edit-mode { padding-left: 24rpx; }
+.order-content { flex: 1; min-width: 0; }
+
+.order-header { margin-bottom: 12rpx; }
+.order-project { font-size: 28rpx; font-weight: 600; color: var(--primary); flex: 1; margin-right: 16rpx; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.order-body { padding: 8rpx 0; display: flex; align-items: center; gap: 16rpx; }
+.order-package { font-size: 26rpx; color: var(--text-secondary); }
+.order-count { font-size: 24rpx; color: var(--text-muted); }
+
+.order-plate { padding: 4rpx 0; }
+.plate-tag { font-size: 22rpx; color: var(--accent); background: rgba(249,115,22,0.08); padding: 4rpx 14rpx; border-radius: 8rpx; }
+
+.order-footer { padding-top: 16rpx; border-top: 1rpx solid var(--border-subtle); }
+.order-time { font-size: 22rpx; color: var(--text-muted); }
+.order-price { display: flex; align-items: baseline; }
+
+/* 长按提示 */
+.longpress-hint { text-align: center; padding: 40rpx; font-size: 24rpx; color: var(--text-muted); }

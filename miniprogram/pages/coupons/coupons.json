@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "t-tabs": "tdesign-miniprogram/tabs/tabs",
+    "t-empty": "tdesign-miniprogram/empty/empty",
+    "coupon-card": "/components/coupon-card/coupon-card"
+  },
+  "navigationBarTitleText": "优惠券",
+  "navigationBarBackgroundColor": "#060710",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#060710"
+}

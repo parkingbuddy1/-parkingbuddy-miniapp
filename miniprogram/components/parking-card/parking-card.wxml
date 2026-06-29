@@ -1,0 +1,47 @@
+<!-- 停车场卡片 v3 -->
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="pcard card-glass" bindtap="onTap">
+  <!-- 地图预览区 -->
+  <view class="pcard-map">
+    <image wx:if="{{parking.cover}}" class="map-img" src="{{parking.cover}}" mode="aspectFill" lazy-load/>
+    <view wx:else class="pcard-map-fb">
+      <text class="pcard-map-emoji">🅿️</text>
+      <text class="pcard-map-hint">点击查看地图</text>
+    </view>
+    <view class="pcard-badge" wx:if="{{parking.badge}}"><text>{{parking.badge}}</text></view>
+    <view class="pcard-dist" wx:if="{{parking.distanceText}}"><text>{{parking.distanceText}}</text></view>
+  </view>
+
+  <!-- 信息区 -->
+  <view class="pcard-body">
+    <!-- 名称 + 最低价同行 -->
+    <view class="pcard-row flex-between">
+      <text class="pcard-name ellipsis">{{parking.name}}</text>
+      <view class="pcard-min-price">
+        <text class="min-sym">¥</text>
+        <text class="min-num">{{filters.safePrice(parking.minPrice)}}</text>
+        <text class="min-unit">/月起</text>
+      </view>
+    </view>
+
+    <view class="pcard-addr">
+      <text class="addr-icon">📍</text>
+      <text class="addr-text">{{parking.address}}</text>
+    </view>
+
+    <!-- 套餐标签 -->
+    <view class="pcard-tags" wx:if="{{parking.packageTags && parking.packageTags.length>0}}">
+      <text class="pcard-tag" wx:for="{{parking.packageTags}}" wx:key="index" wx:if="{{index<3}}">{{item}}</text>
+      <text class="pcard-tag-more" wx:if="{{parking.packageTags.length>3}}">+{{parking.packageTags.length-3}}</text>
+    </view>
+
+    <!-- 车位热度 -->
+    <view class="pcard-heat flex-between">
+      <view class="flex">
+        <text wx:for="{{[1,2,3,4,5]}}" wx:key="index" class="heat-dot {{index<=parking.heatLevel?'on':''}}"></text>
+        <text class="heat-text" wx:if="{{parking.heatLevel}}">车位充足</text>
+      </view>
+      <text class="pcard-pkg-count">{{parking.packageCount||0}}个套餐</text>
+    </view>
+  </view>
+</view>

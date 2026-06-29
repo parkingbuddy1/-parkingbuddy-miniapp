@@ -1,0 +1,66 @@
+/**
+ * WXS 价格格式化工具
+ * 用于 WXML 模板中对价格的格式化显示
+ */
+var toFixed = function(val) {
+  if (val === undefined || val === null || val === '') {
+    return '0.00';
+  }
+  var num = parseFloat(val);
+  if (isNaN(num)) {
+    return '0.00';
+  }
+  return num.toFixed(2);
+};
+
+/**
+ * 安全显示价格：如果是0或无效值，返回占位符
+ * 避免 iOS WXML 中 || 运算符兼容性问题
+ */
+var safePrice = function(val) {
+  if (val === undefined || val === null || val === '') {
+    return '?';
+  }
+  var num = parseFloat(val);
+  if (isNaN(num)) {
+    return '?';
+  }
+  return num;
+};
+
+/**
+ * 判断值是否在数组中（替代 WXML 中不可靠的 indexOf）
+ */
+var inArray = function(arr, val) {
+  if (!arr || !arr.length) return false;
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] === val) return true;
+  }
+  return false;
+};
+
+/**
+ * 判断 selSubs/selType/selPeriods 中任意层级包含指定值
+ * 用于条件筛选面板芯片的选中状态
+ */
+var hasSel = function(subs, type, periods, val) {
+  if (subs && subs.length) {
+    for (var i = 0; i < subs.length; i++) {
+      if (subs[i] === val) return true;
+    }
+  }
+  if (type && type === val) return true;
+  if (periods && periods.length) {
+    for (var j = 0; j < periods.length; j++) {
+      if (periods[j] === val) return true;
+    }
+  }
+  return false;
+};
+
+module.exports = {
+  toFixed: toFixed,
+  safePrice: safePrice,
+  inArray: inArray,
+  hasSel: hasSel
+};

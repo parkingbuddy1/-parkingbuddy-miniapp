@@ -1,0 +1,35 @@
+<wxs module="m">
+  var discount = function(price, orig) {
+    if (!orig || orig <= 0) return '';
+    var pct = Math.round(price / orig * 100);
+    return pct + '折';
+  }
+  var round2 = function(val) {
+    if (!val) return '0';
+    return Math.round(val * 100) / 100;
+  }
+  module.exports = { discount: discount, round2: round2 };
+</wxs>
+<!-- 套餐卡片 v6 - 原价现价同行 + 选中态 -->
+<view class="pkg card-glass {{selected?'pkg-selected':''}}" bindtap="onSelect">
+  <view class="pkg-body">
+    <!-- 套餐名 + 时限 -->
+    <text class="pkg-name">{{package.name}}</text>
+    <view class="pkg-meta" wx:if="{{package.timeRange}}">
+      <text>⏰ {{package.timeRange}}</text>
+    </view>
+    <view class="pkg-meta" wx:if="{{package.inOutCount}}">
+      <text>🔄 进出{{package.inOutCount}}次 · 有效{{package.validDays||1}}天</text>
+    </view>
+    <!-- 原价现价同行 -->
+    <view class="pkg-price-row">
+      <text class="pkg-orig" wx:if="{{package.originalPrice}}">原价 ¥{{m.round2(package.originalPrice)}}</text>
+      <text class="pkg-discount" wx:if="{{package.originalPrice>0&&package.price>0}}">{{m.discount(package.price, package.originalPrice)}}</text>
+      <text class="pkg-cur">¥{{m.round2(package.price||0)}}/{{package.period==='次卡'?'张':'月'}}</text>
+    </view>
+    <!-- 单次停放价（仅次卡） -->
+    <view class="pkg-peruse" wx:if="{{package.perUsePrice}}">
+      <text>单次停放{{m.round2(package.perUsePrice)}}元/次</text>
+    </view>
+  </view>
+</view>

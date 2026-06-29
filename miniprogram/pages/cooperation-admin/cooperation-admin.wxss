@@ -1,0 +1,36 @@
+/* 商务合作管理 */
+.page{background:var(--bg-deep);min-height:100vh}
+.loading-wrap{padding-top:200rpx;text-align:center}
+.empty-wrap{display:flex;flex-direction:column;align-items:center;padding-top:160rpx}
+.empty-emoji{font-size:72rpx;margin-bottom:20rpx;opacity:.5}
+.empty-title{font-size:28rpx;color:var(--text-secondary)}
+
+.list{padding:16rpx 24rpx}
+.coop-item{
+  background:var(--bg-card);border-radius:16rpx;
+  padding:24rpx;margin-bottom:12rpx;
+  border-left:6rpx solid var(--primary);
+  transition:opacity .2s;
+}
+.coop-item.viewed{opacity:.7;border-left-color:var(--border-subtle)}
+
+.coop-meta{display:flex;flex-wrap:wrap;gap:12rpx;margin-bottom:12rpx}
+.coop-label{font-size:22rpx;color:var(--primary);background:var(--primary-light);padding:4rpx 14rpx;border-radius:8rpx}
+.coop-time{font-size:20rpx;color:var(--text-muted);margin-left:auto}
+
+.coop-content{
+  font-size:26rpx;color:var(--text-primary);line-height:1.6;
+  margin-bottom:16rpx;padding:16rpx;background:var(--bg-deep);
+  border-radius:10rpx
+}
+
+.coop-footer{display:flex;align-items:center;justify-content:space-between}
+.coop-id{font-size:20rpx;color:var(--text-muted)}
+.view-btn{
+  font-size:22rpx;color:#fff;background:var(--primary);
+  padding:8rpx 20rpx;border-radius:20rpx;font-weight:600
+}
+.view-btn:active{opacity:.8}
+.viewed-tag{font-size:22rpx;color:#059669;font-weight:600}
+
+.safe-area{height:40rpx}

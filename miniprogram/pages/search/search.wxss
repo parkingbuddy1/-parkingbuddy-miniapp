@@ -1,0 +1,28 @@
+/* 搜索页 v1 - 蓝字橙字白底风格 */
+.page { min-height: 100vh; background: var(--bg-deep); }
+.search-bar { padding: 24rpx; background: var(--bg-card); }
+
+.history-section { padding: 24rpx; }
+.section-header { margin-bottom: 16rpx; }
+.section-title { font-size: 26rpx; font-weight: 600; color: var(--text-primary); }
+.clear-btn { font-size: 24rpx; color: var(--accent); }
+
+.history-tags { gap: 12rpx; }
+.history-tag {
+  padding: 8rpx 24rpx; background: #F1F5F9;
+  border-radius: 40rpx; font-size: 24rpx; color: var(--text-secondary);
+}
+
+.result-section { padding: 12rpx 24rpx; }
+.result-header { font-size: 24rpx; color: var(--text-secondary); padding: 16rpx 0; }
+.result-count { color: var(--accent); font-weight: 600; }
+
+.result-item {
+  background: var(--bg-card); padding: 24rpx; margin-bottom: 16rpx;
+  border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  border: 1rpx solid var(--border-subtle);
+}
+.result-name { font-size: 28rpx; font-weight: 600; display: block; margin-bottom: 8rpx; color: var(--primary); }
+.result-address { font-size: 24rpx; color: var(--text-secondary); display: block; margin-bottom: 12rpx; }
+.result-footer { display: flex; justify-content: space-between; align-items: center; }
+.result-packages { font-size: 24rpx; color: var(--text-muted); }

@@ -1,0 +1,23 @@
+<!-- 用户反馈管理 -->
+<view class="page">
+  <view class="list-wrap" wx:if="{{list.length>0}}">
+    <view class="fb-card" wx:for="{{list}}" wx:key="_id">
+      <view class="fb-meta">
+        <text class="fb-phone">📱 {{item.phone}}</text>
+        <text class="fb-time">{{item.createTime}}</text>
+      </view>
+      <view class="fb-content">{{item.content}}</view>
+      <view class="fb-actions">
+        <view class="fb-btn adopt" bindtap="onAdopt" data-id="{{item._id}}">采纳</view>
+        <view class="fb-btn hold" bindtap="onHold" data-id="{{item._id}}">暂存</view>
+        <view class="fb-btn reject" bindtap="onReject" data-id="{{item._id}}">废除</view>
+      </view>
+    </view>
+  </view>
+  <t-empty wx:else description="暂无待处理反馈" />
+
+  <!-- 暂存理由对话框 -->
+  <t-dialog visible="{{showHoldDialog}}" title="暂存理由" confirm-btn="发送" cancel-btn="取消" bind:confirm="onHoldConfirm" bind:cancel="onHoldCancel">
+    <textarea slot="content" class="dialog-input" placeholder="请输入暂存理由..." value="{{holdReason}}" bindinput="onHoldReasonInput" maxlength="200" />
+  </t-dialog>
+</view>

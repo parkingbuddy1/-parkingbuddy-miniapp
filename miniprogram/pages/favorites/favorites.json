@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "t-empty": "tdesign-miniprogram/empty/empty",
+    "parking-card": "/components/parking-card/parking-card"
+  },
+  "navigationBarTitleText": "我的收藏",
+  "navigationBarBackgroundColor": "#060710",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#060710"
+}

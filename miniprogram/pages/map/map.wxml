@@ -1,0 +1,47 @@
+<view class="map-page">
+  <!-- 地图 -->
+  <map
+    id="parkingMap"
+    class="parking-map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    scale="{{scale}}"
+    markers="{{markers}}"
+    bindmarkertap="onMarkerTap"
+    bindregionchange="onRegionChange"
+    show-location
+  ></map>
+
+  <!-- 顶部栏 -->
+  <view class="map-topbar">
+    <view class="map-back" bindtap="onBack">
+      <text>← 返回</text>
+    </view>
+    <view class="map-stats">
+      <text wx:if="{{!loading}}">
+        <text class="map-stats-num">{{total}}</text> 个停车场
+        <text wx:if="{{truncated}}" style="color:#F97316;font-size:20rpx;">（显示前200个）</text>
+      </text>
+      <text wx:else>加载中...</text>
+    </view>
+  </view>
+
+  <!-- 筛选按钮 -->
+  <view class="map-filters">
+    <view class="map-filter-btn {{cardFilter==''?'on':''}}" bindtap="onFilterCard" data-type="">全部</view>
+    <view class="map-filter-btn {{cardFilter=='monthly'?'on':''}}" bindtap="onFilterCard" data-type="monthly">
+      <text class="map-dot" style="background:#FF6B35"></text>月卡
+    </view>
+    <view class="map-filter-btn {{cardFilter=='count'?'on':''}}" bindtap="onFilterCard" data-type="count">
+      <text class="map-dot" style="background:#3B82F6"></text>次卡
+    </view>
+    <view class="map-filter-btn" bindtap="onResetView">📍 重置</view>
+  </view>
+
+  <!-- 图例提示 -->
+  <view class="map-legend-hint" bindtap="onToggleLegend">
+    <text class="map-dot" style="background:#FF6B35"></text> 月卡
+    <text class="map-dot" style="background:#3B82F6;margin-left:12rpx;"></text> 次卡
+    <text style="color:rgba(255,255,255,0.4);margin-left:8rpx;font-size:20rpx;">点击标记看详情</text>
+  </view>
+</view>

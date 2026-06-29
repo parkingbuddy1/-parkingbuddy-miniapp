@@ -1,0 +1,165 @@
+<!-- 确认订单 v3 - 支持车辆选择 -->
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="page">
+  <!-- ===== 已选车辆 ===== -->
+  <view class="vehicle-pick card-glass" bindtap="onPickVehicle" wx:if="{{selectedVehicle}}">
+    <view class="flex-between">
+      <view class="flex" style="align-items:center;gap:12rpx">
+        <text class="vehicle-icon">🚗</text>
+        <view>
+          <text class="vehicle-plate">{{selectedVehicle.plateNo}}</text>
+          <view class="flex" style="gap:12rpx;margin-top:4rpx" wx:if="{{selectedVehicle.brandModel||selectedVehicle.color}}">
+            <text class="vehicle-meta">{{selectedVehicle.brandModel}}</text>
+            <text class="vehicle-meta" wx:if="{{selectedVehicle.color}}">{{selectedVehicle.color}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="flex" style="align-items:center;gap:4rpx">
+        <text class="switch-hint" wx:if="{{vehicles.length > 1}}">切换</text>
+        <text style="color:var(--text-muted)">›</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card-glass" style="padding:24rpx;margin-top:20rpx">
+    <text class="o-parking-name">{{parkingInfo.name||'加载中...'}}</text>
+    <view class="flex" style="margin-top:8rpx;gap:6rpx">
+      <text style="font-size:18rpx">📍</text>
+      <text class="ellipsis" style="font-size:22rpx;color:var(--text-secondary)">{{parkingInfo.address}}</text>
+    </view>
+  </view>
+
+  <!-- 套餐 -->
+  <view class="card-glass" style="padding:24rpx">
+    <view class="flex-between">
+      <view class="flex-1">
+        <text class="fs-28 fw-600" style="color:var(--primary)">{{selectedPackage.name||'请选择套餐'}}</text>
+        <view class="flex" wx:if="{{selectedPackage.period}}" style="margin-top:6rpx;gap:4rpx;font-size:20rpx;color:var(--text-muted)">
+          <text>⏰</text><text>{{selectedPackage.period}}</text>
+        </view>
+      </view>
+      <view class="flex" style="align-items:baseline">
+        <text class="price-accent" style="font-size:48rpx;font-weight:800">{{selectedPackage.price||0}}</text>
+        <text style="color:var(--text-muted);font-size:22rpx">元/{{selectedPackage.unit||'月'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 拼团价提示 -->
+  <view class="card-glass" wx:if="{{groupType&&groupPrice}}" style="padding:24rpx;border-color:var(--border-glow);background:rgba(249,115,22,.05)">
+    <view class="flex-between">
+      <view>
+        <text class="fs-22" style="color:var(--accent)">🔥 {{groupType==='3'?'好友团(3人起)':'企业团(10人起)'}}</text>
+        <text class="fs-20" style="color:var(--text-muted);display:block;margin-top:4rpx">比单独购买省 ¥{{filters.toFixed(saveAmount)}}</text>
+      </view>
+      <text class="price-accent fs-36" style="font-weight:800">¥{{filters.toFixed(groupPrice)}}/人</text>
+    </view>
+  </view>
+
+  <!-- 开始日期（仅拼团） -->
+  <picker wx:if="{{groupType}}" mode="date" value="{{startDate}}" start="{{minDate}}" bindchange="onDateChange">
+    <view class="card-glass" style="padding:24rpx">
+      <view class="flex-between">
+        <text class="fs-26" style="color:var(--text-primary)">套餐开始日期</text>
+        <view class="flex" style="align-items:center;gap:8rpx">
+          <text style="color:var(--accent);font-size:26rpx">{{startDate||'选择日期'}}</text>
+          <text style="color:var(--text-muted)">📅</text>
+        </view>
+      </view>
+    </view>
+  </picker>
+
+  <!-- 数量 -->
+  <view class="card-glass" style="padding:24rpx">
+    <view class="flex-between">
+      <text class="fs-26" style="color:var(--text-primary)">购买数量</text>
+      <view class="flex" style="align-items:center;gap:24rpx">
+        <view class="stepper-btn {{quantity<=1?'disabled':''}}" bindtap="decreaseQty">−</view>
+        <text class="fs-32 fw-700" style="color:var(--text-primary)">{{quantity}}</text>
+        <view class="stepper-btn" bindtap="increaseQty">+</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 优惠券 -->
+  <view class="card-glass" style="padding:24rpx" bindtap="onSelectCoupon">
+    <view class="flex-between">
+      <text class="fs-26" style="color:var(--text-primary)">优惠券</text>
+      <view class="flex" style="align-items:center;gap:8rpx">
+        <text style="color:var(--accent)" wx:if="{{selectedCoupon}}">-¥{{filters.toFixed(selectedCoupon.amount||selectedCoupon.discount||0)}}</text>
+        <text style="color:#EF4444" wx:elif="{{couponUsable>0}}">有{{couponUsable}}张可用</text>
+        <text style="color:var(--text-muted)" wx:elif="{{couponUnusable>0}}">{{couponUnusable}}张不可用</text>
+        <text style="color:var(--text-muted)" wx:else>0张可用</text>
+        <text style="color:var(--text-muted)">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 费用 -->
+  <view class="card-glass" style="padding:24rpx">
+    <view class="flex-between" style="padding:8rpx 0;font-size:24rpx">
+      <text style="color:var(--text-secondary)">套餐金额</text>
+      <text style="color:var(--text-primary)">¥{{filters.toFixed(totalPrice)}}</text>
+    </view>
+    <view class="flex-between" wx:if="{{selectedCoupon}}" style="padding:8rpx 0;font-size:24rpx">
+      <text style="color:var(--text-secondary)">优惠券</text>
+      <text style="color:var(--success)">-¥{{filters.toFixed(selectedCoupon.amount||selectedCoupon.discount||0)}}</text>
+    </view>
+    <view class="flex-between" style="padding:16rpx 0 0;border-top:1rpx solid var(--border-subtle);margin-top:8rpx">
+      <text class="fs-28 fw-700" style="color:var(--text-primary)">实付金额</text>
+      <text class="price-accent fs-40" style="font-weight:800">¥{{filters.toFixed(finalPrice)}}</text>
+    </view>
+  </view>
+
+  <view class="safe-bottom" style="height:160rpx"></view>
+</view>
+
+<!-- 底部 -->
+<view class="bot-bar safe-bottom" wx:if="{{!groupType}}">
+  <view class="flex" style="align-items:baseline;margin-right:12rpx;flex-shrink:0">
+    <text style="color:var(--text-secondary);font-size:22rpx">合计 </text>
+    <text class="price-accent fs-36" style="font-weight:800">¥{{filters.toFixed(finalPrice)}}</text>
+  </view>
+  <view class="cart-btn" bindtap="onAddToCart"><text wx:if="{{!addedToCart}}">收藏</text><text wx:else>✓ 已收藏</text></view>
+  <view class="pay-btn flex-1" bindtap="onSubmitOrder"><text>微信支付</text></view>
+</view>
+
+<!-- 底部（拼团模式 — 两行布局） -->
+<view class="bot-bar-group safe-bottom" wx:else>
+  <view class="group-foot-row">
+    <view class="flex" style="align-items:baseline;gap:8rpx">
+      <text style="color:var(--text-secondary);font-size:22rpx">合计</text>
+      <text class="price-accent fs-36" style="font-weight:800">¥{{filters.toFixed(finalPrice)}}</text>
+      <text class="group-save-tip">已省¥{{filters.toFixed(saveAmount)}}</text>
+    </view>
+    <view class="cart-btn-sm" bindtap="onAddToCart">
+      <text wx:if="{{!addedToCart}}">收藏</text>
+      <text wx:else>✓</text>
+    </view>
+  </view>
+  <view class="group-foot-row" style="gap:12rpx">
+    <button class="invite-btn-new" open-type="share">邀请好友拼团 ¥{{filters.toFixed(groupPrice)}}/人</button>
+    <view class="pay-btn flex-1" bindtap="onSubmitOrder"><text>微信支付</text></view>
+  </view>
+</view>
+
+<!-- ===== 车辆选择弹窗 ===== -->
+<view class="modal-mask" wx:if="{{showVehiclePicker}}" bindtap="onCloseVehiclePicker"></view>
+<view class="vehicle-picker-card" wx:if="{{showVehiclePicker}}">
+  <view class="picker-header">
+    <text class="picker-title">选择车辆</text>
+    <view class="picker-close" bindtap="onCloseVehiclePicker">✕</view>
+  </view>
+  <scroll-view scroll-y class="picker-body">
+    <view class="pick-item {{item.id===selectedVehicle.id?'active':''}}" wx:for="{{vehicles}}" wx:key="id" bindtap="onSelectVehicle" data-id="{{item.id}}">
+      <view class="pick-left">
+        <text class="pick-plate">{{item.plateNo}}</text>
+        <text class="pick-meta">{{item.brandModel || '未填写'}}{{item.color ? ' · '+item.color : ''}}</text>
+      </view>
+      <view class="pick-check" wx:if="{{item.id===selectedVehicle.id}}">✓</view>
+    </view>
+  </scroll-view>
+  <view class="picker-footer">
+    <view class="add-vehicle-link" bindtap="onAddNewVehicle">+ 添加新车辆</view>
+  </view>
+</view>

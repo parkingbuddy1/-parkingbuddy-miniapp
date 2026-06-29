@@ -1,0 +1,42 @@
+.page{min-height:100vh;background:#F5F7FA;padding-bottom:40rpx}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:24rpx 32rpx;background:#fff;border-bottom:1rpx solid #E5E7EB}
+.back-btn{font-size:26rpx;color:#1A56DB}
+.topbar-title{font-size:32rpx;font-weight:700;color:#1F2937}
+.topbar-count{font-size:24rpx;color:#6B7280}
+
+.filter-row{display:flex;gap:16rpx;padding:20rpx 32rpx;background:#fff;margin-bottom:8rpx}
+.f-item{padding:12rpx 24rpx;border-radius:40rpx;font-size:24rpx;color:#6B7280;background:#F3F4F6}
+.f-item.on{background:#1A56DB;color:#fff}
+
+.empty{text-align:center;padding:120rpx 0;font-size:28rpx;color:#9CA3AF}
+.loading-msg{text-align:center;padding:80rpx;font-size:26rpx;color:#9CA3AF}
+
+.card{margin:8rpx 24rpx;background:#fff;border-radius:16rpx;overflow:hidden}
+.card-hd{display:flex;justify-content:space-between;align-items:center;padding:28rpx 24rpx}
+.card-hd-left{display:flex;flex-direction:column;gap:4rpx}
+.card-name{font-size:28rpx;font-weight:600;color:#1F2937}
+.card-plate{font-size:22rpx;color:#6B7280}
+.card-hd-right{display:flex;align-items:center;gap:12rpx}
+.status-tag{font-size:22rpx;padding:4rpx 12rpx;border-radius:8rpx}
+.tag-pending_review{background:#FFF3E0;color:#C2410C}
+.tag-pending_manual{background:#FEF3C7;color:#B45309}
+.tag-verified{background:#DCFCE7;color:#059669}
+.tag-rejected{background:#FEE2E2;color:#DC2626}
+.expand-arrow{font-size:20rpx;color:#9CA3AF}
+
+.card-body{padding:0 24rpx 24rpx;border-top:1rpx solid #F3F4F6}
+.info-row{display:flex;justify-content:space-between;padding:10rpx 0;font-size:24rpx}
+.info-key{color:#6B7280}
+.info-val{color:#1F2937;font-weight:500}
+
+.ocr-section,.check-section,.license-section{margin-top:16rpx;padding:16rpx;background:#F9FAFB;border-radius:12rpx}
+.sec-title{display:block;font-size:24rpx;font-weight:700;color:#374151;margin-bottom:8rpx}
+.check-item{padding:8rpx 0;font-size:24rpx}
+.check-item.pass{color:#059669}
+.check-item.warn{color:#B45309}
+
+.actions{display:flex;gap:16rpx;margin-top:20rpx}
+.btn-approve{flex:1;height:72rpx;background:#059669;color:#fff;border-radius:12rpx;font-size:26rpx;font-weight:600;border:none}
+.btn-reject{flex:1;height:72rpx;background:#DC2626;color:#fff;border-radius:12rpx;font-size:26rpx;font-weight:600;border:none}
+
+.license-img{width:100%;border-radius:8rpx;margin-top:8rpx;background:#E5E7EB}

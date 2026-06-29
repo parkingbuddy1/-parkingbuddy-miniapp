@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "parking-card": "/components/parking-card/parking-card"
+  },
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "backgroundColor": "#F8FAFC"
+}

@@ -1,0 +1,67 @@
+<!-- 站内消息页 -->
+<view class="page">
+  <!-- 加载中 -->
+  <block wx:if="{{loading}}">
+    <view class="loading-wrap"><t-loading theme="circular" size="40rpx" text="加载中..." /></view>
+  </block>
+
+  <!-- 空状态 -->
+  <block wx:elif="{{list.length===0}}">
+    <view class="empty-wrap">
+      <text class="empty-emoji">📬</text>
+      <text class="empty-title">暂无消息</text>
+      <text class="empty-sub">优惠券到账、留言回复都会在这里通知你</text>
+    </view>
+  </block>
+
+  <!-- 消息列表 -->
+  <block wx:else>
+    <!-- 顶部操作栏 -->
+    <view class="top-bar">
+      <view class="top-bar-left">
+        <view wx:if="{{hasUnread && !editMode}}" class="read-all-btn" bindtap="onReadAll">✓ 全部已读</view>
+        <text wx:elif="{{editMode}}" class="top-bar-hint">已选 {{selectedIds.length}} 项</text>
+      </view>
+      <view class="edit-btn {{editMode?'active':''}}" bindtap="onToggleEdit">
+        {{editMode ? '完成' : '编辑'}}
+      </view>
+    </view>
+
+    <view class="msg-list">
+      <view
+        class="msg-item {{item.read?'read':''}} {{editMode?'edit-mode':''}}"
+        wx:for="{{list}}" wx:key="_id"
+        data-index="{{index}}"
+        data-id="{{item._id}}"
+        bindtap="onTapMessage"
+      >
+        <!-- 编辑模式：勾选框 -->
+        <view wx:if="{{editMode}}" class="msg-check {{item._selected?'checked':''}}" catchtap="onToggleSelect" data-id="{{item._id}}">
+          <text wx:if="{{item._selected}}">✓</text>
+        </view>
+
+        <view class="msg-avatar">
+          <text>{{item._icon}}</text>
+        </view>
+        <view class="msg-body">
+          <view class="msg-top">
+            <text class="msg-label">{{item._label}}</text>
+            <text class="msg-time">{{item._time}}</text>
+          </view>
+          <text class="msg-title">{{item.title}}</text>
+          <text class="msg-content">{{item.content}}</text>
+        </view>
+        <view wx:if="{{!item.read && !editMode}}" class="msg-dot"></view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 编辑模式：底部删除栏 -->
+  <view class="bottom-del-bar {{editMode?'show':''}}">
+    <view class="bottom-del-btn {{selectedIds.length>0?'active':''}}" bindtap="onBatchDelete">
+      🗑️ 删除{{selectedIds.length>0?'(' + selectedIds.length + ')':''}}
+    </view>
+  </view>
+
+  <view class="safe-area {{editMode?'with-bar':''}}"></view>
+</view>

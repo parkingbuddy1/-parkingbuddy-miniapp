@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/order/order",
+    "pages/order-list/order-list",
+    "pages/search/search",
+    "pages/mine/mine",
+    "pages/coupons/coupons",
+    "pages/favorites/favorites",
+    "pages/profile/profile",
+    "pages/ai-chat/ai-chat",
+    "pages/map/map",
+    "pages/verify/verify",
+    "pages/admin-review/admin-review",
+    "pages/feedback/feedback",
+    "pages/feedback-admin/feedback-admin",
+    "pages/feedback-archive/feedback-archive",
+    "pages/messages/messages",
+    "pages/cooperation/cooperation",
+    "pages/cooperation-admin/cooperation-admin"
+  ],
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.6",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "粤停汇",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F8FAFC"
+  },
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于搜索附近停车场"
+    },
+    "scope.record": {
+      "desc": "您的声音将用于语音搜索停车场"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation", "chooseAddress"],
+  "navigateToMiniProgramAppIdList": [
+    "wx65cc950f42e8fff1",
+    "wx7643d5f831302ab0"
+  ],
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {}
+}

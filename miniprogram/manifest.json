@@ -1,0 +1,74 @@
+{
+  "name": "粤停汇",
+  "appid": "__UNI__parkingbuddy",
+  "description": "停车场比价助手 - 月卡/次卡搜索、比价、购买",
+  "versionName": "1.0.0",
+  "versionCode": 100,
+  "transformPx": false,
+  "app-plus": {
+    "usingComponents": true,
+    "nvueStyleCompiler": "uni-app",
+    "compilerVersion": 3,
+    "splashscreen": {
+      "alwaysShowBeforeRender": true,
+      "waiting": true,
+      "autoclose": true,
+      "delay": 0
+    },
+    "modules": {
+      "Payment": {},
+      "Maps": {},
+      "Geolocation": {},
+      "LivePusher": {}
+    },
+    "distribute": {
+      "android": {
+        "packagename": "com.yuetinghui.parking",
+        "permissions": [
+          "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+          "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+          "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>"
+        ]
+      },
+      "ios": {
+        "bundleIdentifier": "com.yuetinghui.parking"
+      },
+      "sdkConfigs": {
+        "payment": {
+          "weixin": {}
+        },
+        "maps": {
+          "tencent": {
+            "key": "YOUR_TENCENT_MAP_KEY"
+          }
+        }
+      }
+    }
+  },
+  "quickapp": {},
+  "mp-weixin": {
+    "appid": "wxe973a4c0847e15dd",
+    "setting": {
+      "urlCheck": false
+    },
+    "usingComponents": true,
+    "lazyCodeLoading": "requiredComponents",
+    "plugins": {
+      "WechatSI": {
+        "version": "0.3.6",
+        "provider": "wx069ba97219f66d99"
+      }
+    },
+    "permission": {
+      "scope.userLocation": {
+        "desc": "您的位置信息将用于搜索附近停车场"
+      },
+      "scope.record": {
+        "desc": "您的声音将用于语音搜索停车场"
+      }
+    },
+    "requiredPrivateInfos": ["getLocation", "chooseAddress"]
+  }
+}

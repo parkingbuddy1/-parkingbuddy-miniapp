@@ -1,0 +1,83 @@
+/* 粤停汇 全局样式 - 蓝字橙字白底风格 */
+@import './miniprogram_npm/tdesign-miniprogram/common/style/theme/_index.wxss';
+
+page {
+  --bg-deep: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F1F5F9;
+  --accent: #F97316;
+  --accent-glow: rgba(249,115,22,0.15);
+  --primary: #1A56DB;
+  --primary-light: rgba(26,86,219,0.08);
+  --gold: #F59E0B;
+  --success: #10B981;
+  --text-primary: #1E293B;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --text-blue: #1A56DB;
+  --text-orange: #F97316;
+  --border-subtle: #E2E8F0;
+  --border-glow: rgba(249,115,22,0.2);
+  --shadow-sm: 0 1rpx 3rpx rgba(0,0,0,0.04);
+  --shadow-md: 0 4rpx 12rpx rgba(0,0,0,0.06);
+  --radius-sm: 12rpx;
+  --radius-md: 20rpx;
+  --radius-lg: 28rpx;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-deep);
+}
+
+.flex{display:flex}.flex-center{display:flex;align-items:center;justify-content:center}
+.flex-between{display:flex;align-items:center;justify-content:space-between}
+.flex-col{display:flex;flex-direction:column}.flex-wrap{flex-wrap:wrap}.flex-1{flex:1}
+.text-center{text-align:center}.text-right{text-align:right}
+.ellipsis{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mt-sm{margin-top:16rpx}.mt-md{margin-top:24rpx}.mt-lg{margin-top:48rpx}
+.mb-sm{margin-bottom:16rpx}.mb-md{margin-bottom:24rpx}
+.p-md{padding:24rpx}.p-lg{padding:32rpx}
+
+/* 卡片 */
+.card-glass{
+  background:var(--bg-card);border-radius:var(--radius-md);
+  border:1rpx solid var(--border-subtle);
+  margin:16rpx 24rpx;overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+
+/* 价格 - 橙色强调 */
+.price-accent{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+.price-blue{color:var(--primary);font-weight:700;font-variant-numeric:tabular-nums}
+.fw-700{font-weight:700}.fw-600{font-weight:600}
+.fs-20{font-size:20rpx}.fs-22{font-size:22rpx}.fs-24{font-size:24rpx}
+.fs-28{font-size:28rpx}.fs-32{font-size:32rpx}.fs-36{font-size:36rpx}.fs-48{font-size:48rpx}
+
+/* 蓝色主按钮 */
+.btn-accent{
+  background:linear-gradient(135deg,#1A56DB,#4F8AF7);
+  color:#FFF;font-weight:700;border-radius:48rpx;
+  padding:16rpx 40rpx;font-size:26rpx;border:none;
+  box-shadow:0 8rpx 24rpx rgba(26,86,219,0.25);
+}
+
+/* 橙色强调按钮 */
+.btn-orange{
+  background:linear-gradient(135deg,#F97316,#FB923C);
+  color:#FFF;font-weight:700;border-radius:48rpx;
+  padding:16rpx 40rpx;font-size:26rpx;border:none;
+  box-shadow:0 8rpx 24rpx rgba(249,115,22,0.25);
+}
+
+/* 玻璃态次要按钮 */
+.btn-glass{
+  background:var(--bg-card);
+  border:1rpx solid var(--border-subtle);
+  color:var(--text-secondary);border-radius:48rpx;
+  padding:16rpx 40rpx;font-size:26rpx;
+}
+
+.safe-bottom{padding-bottom:constant(safe-area-inset-bottom);padding-bottom:env(safe-area-inset-bottom)}
+.bottom-spacer{height:140rpx}

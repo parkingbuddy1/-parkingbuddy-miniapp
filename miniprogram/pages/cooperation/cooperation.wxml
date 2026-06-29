@@ -1,0 +1,67 @@
+<!-- 项目推荐及合作 -->
+<view class="page">
+  <!-- 公司简介 -->
+  <view class="intro-card">
+    <view class="intro-header">
+      <text class="intro-logo">粤停汇</text>
+      <text class="intro-logo-sub">TEC</text>
+    </view>
+    <text class="intro-company">粤停汇科技（深圳）有限公司</text>
+    <text class="intro-body">
+      是一家专注于城市停车资源运营与AI智能调度的创新科技企业。公司通过<text class="intro-highlight">「收益保底+免费升级停车系统+闲置资源运营」</text>的模式，坚持<text class="intro-highlight">「不碰存量客户、不改收款渠道、不拿经营流水」</text>的"三不原则"，帮助经营方、物业、业委会盘活停车场闲置资源，实现停车场增收与车主优惠双赢。同时依托自主研发的AI停车平台，打造城市停车资源共享网络，让停车更便宜、更便捷、更智能。
+    </text>
+  </view>
+
+  <!-- 留言表单 -->
+  <view class="form-card">
+    <text class="form-title">📋 项目推荐 / 商务合作</text>
+    <text class="form-sub">如果您有停车场资源或合作意向，请填写以下信息，我们会派专人与您联系</text>
+
+    <view class="form-body">
+      <view class="field">
+        <text class="field-label"><text class="required">*</text>手机号码</text>
+        <input
+          class="field-input"
+          placeholder="请输入您的手机号码"
+          value="{{phone}}"
+          type="number"
+          maxlength="11"
+          bindinput="onPhoneInput"
+        />
+      </view>
+
+      <view class="field">
+        <text class="field-label"><text class="required">*</text>微信号</text>
+        <input
+          class="field-input"
+          placeholder="请输入您的微信号"
+          value="{{wechat}}"
+          maxlength="30"
+          bindinput="onWechatInput"
+        />
+      </view>
+
+      <view class="field">
+        <text class="field-label"><text class="required">*</text>留言内容</text>
+        <textarea
+          class="field-textarea"
+          placeholder="请描述您推荐的项目或合作意向..."
+          value="{{content}}"
+          maxlength="500"
+          bindinput="onContentInput"
+        />
+      </view>
+
+      <view class="privacy-notice">🔒 该留言仅管理员可见</view>
+
+      <button
+        class="submit-btn"
+        disabled="{{submitting}}"
+        loading="{{submitting}}"
+        bindtap="onSubmit"
+      >{{submitting ? '提交中...' : '提交留言'}}</button>
+    </view>
+  </view>
+
+  <view class="bottom-area"></view>
+</view>
