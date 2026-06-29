@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages-property/login/login",
+    "pages-property/home/home",
+    "pages-property/debug/debug",
     "pages/detail/detail",
     "pages/order/order",
     "pages/order-list/order-list",

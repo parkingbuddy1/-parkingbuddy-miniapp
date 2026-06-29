@@ -376,6 +376,11 @@ Page({
     this.setData({ showMenu: false });
     if (route === 'parking') { this.onOpenParking(); return; }
     if (route === 'promo') { wx.showToast({ title: '优惠活动开发中', icon: 'none' }); return; }
+    // 物业端使用 reLaunch（物业端是独立的暗黑风格主题）
+    if (route && route.indexOf('pages-property') === 0) {
+      wx.reLaunch({ url: route });
+      return;
+    }
     wx.navigateTo({ url: route });
   },
 

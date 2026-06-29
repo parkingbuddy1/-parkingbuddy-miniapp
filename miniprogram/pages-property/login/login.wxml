@@ -58,5 +58,9 @@
     <view class="switch-mode" bindtap="switchMode">
       {{mode === 'login' ? '还没有账号？立即注册' : '已有账号？返回登录'}}
     </view>
+
+    <view class="debug-link" bindtap="goDebug">
+      🔧 云函数诊断（开发用）
+    </view>
   </view>
 </view>

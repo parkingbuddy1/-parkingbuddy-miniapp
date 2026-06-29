@@ -1,0 +1,9 @@
+{
+  "name": "import_data",
+  "version": "1.0.0",
+  "description": "批量导入数据云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

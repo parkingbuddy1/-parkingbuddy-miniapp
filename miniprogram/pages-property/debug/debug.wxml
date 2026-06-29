@@ -1,0 +1,19 @@
+<view class="debug-page">
+  <view class="header">
+    <view class="title">物业端云函数诊断</view>
+    <view class="subtitle">自动检测云开发环境与云函数</view>
+  </view>
+
+  <view class="actions">
+    <button class="btn" bindtap="checkCloud">重新诊断</button>
+    <button class="btn btn-secondary" bindtap="copyLogs">复制日志</button>
+    <button class="btn btn-secondary" bindtap="clearLogs">清空日志</button>
+  </view>
+
+  <view class="logs">
+    <view wx:for="{{logs}}" wx:key="time" class="log-item log-{{item.type}}">
+      <text class="log-time">[{{item.time}}]</text>
+      <text class="log-msg">{{item.msg}}</text>
+    </view>
+  </view>
+</view>

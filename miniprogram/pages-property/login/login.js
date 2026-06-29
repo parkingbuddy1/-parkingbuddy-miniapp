@@ -30,6 +30,10 @@ Page({
     });
   },
 
+  goDebug() {
+    wx.navigateTo({ url: '/pages-property/debug/debug' });
+  },
+
   onPhoneInput(e) {
     this.setData({ phone: e.detail.value });
   },

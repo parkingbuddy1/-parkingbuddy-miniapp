@@ -24,6 +24,13 @@ App({
     this.globalData.navBarHeight = systemInfo.platform === 'ios' ? 44 : 48;
     this.globalData.screenWidth = systemInfo.screenWidth;
     this.globalData.screenHeight = systemInfo.screenHeight;
+
+    // 临时调试：长按 logo 进入物业端（仅开发阶段使用）
+    if (options && options.query && options.query.property === '1') {
+      setTimeout(() => {
+        wx.reLaunch({ url: '/pages-property/login/login' });
+      }, 100);
+    }
   },
 
   onShow(options) {
